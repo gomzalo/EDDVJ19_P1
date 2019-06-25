@@ -43,12 +43,12 @@ public class Matriz {
     }
     
     public void llenar(int x, int y){
-        String oo = "";
+        String ooo = "";
         int o = 0;
         for(int i = 0; i < x; i++){
             for(int j = 0; j < y; j++){
-                oo = String.valueOf(o);
-                insertar(i, j, oo);
+                ooo = String.valueOf(o);
+                insertar(i, j, ooo);
                 o++;
             }
         }
