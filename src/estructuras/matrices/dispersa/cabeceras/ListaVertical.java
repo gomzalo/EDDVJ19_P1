@@ -13,10 +13,24 @@ import estructuras.matrices.dispersa.NodoOrtogonal;
  */
 public class ListaVertical {
     NodoOrtogonal primero, ultimo;
+    int tamano;
 
     public ListaVertical() {
         primero = ultimo = null;
+        tamano = 0;
     }    
+
+    public NodoOrtogonal getPrimero() {
+        return primero;
+    }
+
+    public NodoOrtogonal getUltimo() {
+        return ultimo;
+    }
+    
+    public int getTamano() {
+        return tamano;
+    }
     
     public boolean esVacia(){
         return primero == null;
@@ -40,12 +54,16 @@ public class ListaVertical {
         primero.setArriba(nuevo);
         nuevo.setAbajo(primero);
         primero = primero.getArriba();
+        System.out.println("Se ha insertado al inicio en la lista vertical.");
+        tamano++;
     }
     
     public void insertarAlFinal(NodoOrtogonal nuevo){
         ultimo.setAbajo(nuevo);
         nuevo.setArriba(ultimo);
         ultimo = ultimo.getAbajo();
+        System.out.println("Se ha insertado al final en la lista vertical.");
+        tamano++;
     }
     
     public void insertarAlMedio(NodoOrtogonal nuevo){
@@ -60,6 +78,8 @@ public class ListaVertical {
         temporal1.setArriba(nuevo);
         nuevo.setAbajo(temporal1);
         nuevo.setArriba(temporal2);
+        System.out.println("Se ha insertado al medio en la lista vertical.");
+        tamano++;
     }
     
     public void mostrar(){

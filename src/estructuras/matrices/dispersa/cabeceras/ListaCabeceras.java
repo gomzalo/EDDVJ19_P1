@@ -11,9 +11,23 @@ package estructuras.matrices.dispersa.cabeceras;
  */
 public class ListaCabeceras {
     NodoCabecera primero, ultimo;
+    int tamano;
     
     public ListaCabeceras() {
         primero = ultimo = null;
+        tamano = 0;
+    }
+
+    public NodoCabecera getPrimero() {
+        return primero;
+    }
+
+    public NodoCabecera getUltimo() {
+        return ultimo;
+    }
+
+    public int getTamano() {
+        return tamano;
     }
     
     public boolean esVacia(){
@@ -38,12 +52,16 @@ public class ListaCabeceras {
         primero.setAnterior(nuevo);
         nuevo.setSiguiente(primero);
         primero = primero.getAnterior();
+        System.out.println("Se ha insertado al inicio en la lista de cabeceras.");
+        tamano++;
     }
     
     public void insertarAlFinal(NodoCabecera nuevo){
         ultimo.setSiguiente(nuevo);
         nuevo.setAnterior(ultimo);
         ultimo = ultimo.getSiguiente();
+        System.out.println("Se ha insertado al final en la lista de cabeceras.");
+        tamano++;
     }
     
     public void insertarAlMedio(NodoCabecera nuevo){
@@ -59,6 +77,8 @@ public class ListaCabeceras {
         temporal1.setAnterior(nuevo);
         nuevo.setSiguiente(temporal1);
         nuevo.setAnterior(temporal2);
+        System.out.println("Se ha insertado al medio en la lista de cabeceras.");
+        tamano++;
     }
     
     public void mostrar(){

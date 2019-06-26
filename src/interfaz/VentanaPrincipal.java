@@ -13,6 +13,7 @@ import estructuras.matrices.dispersa.Matriz;
 import estructuras.matrices.dispersa.cabeceras.NodoCabecera;
 import estructuras.matrices.dispersa.laterales.NodoLateral;
 import estructuras.matrices.dispersa.NodoOrtogonal;
+import java.io.IOException;
 
 /**
  *
@@ -249,7 +250,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -319,9 +320,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 //            NodoLateral n  = llat.buscar(100);
 //            System.out.println("Nodo n: " + n.getY());
         Matriz matriz = new Matriz();
-        matriz.llenar(3, 3);
-            
+//        matriz.llenar(3, 3);
+        matriz.insertar(0, 0, "#32CD32");
+        matriz.insertar(0, 1, "#32CD35");
+        matriz.insertar(0, 2, "#32CD42");
+        matriz.insertar(1, 1, "#32CD32");
+        matriz.insertar(2, 2, "#32CD32");
         
+//        String dato = matriz.laterales.buscar(0).getFilas().primero.getAbajo().getDerecha().getColor();
+        matriz.graficar("grafo", "1");
+            
+//        System.out.println(dato);
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

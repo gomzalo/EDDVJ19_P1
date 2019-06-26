@@ -11,9 +11,23 @@ package estructuras.matrices.dispersa.laterales;
  */
 public class ListaLaterales {
     NodoLateral primero, ultimo;
+    int tamano;
     
     public ListaLaterales() {
         primero = ultimo = null;
+        tamano = 0;
+    }
+
+    public NodoLateral getPrimero() {
+        return primero;
+    }
+
+    public NodoLateral getUltimo() {
+        return ultimo;
+    }
+    
+    public int getTamano() {
+        return tamano;
     }
     
     public boolean esVacia(){
@@ -38,12 +52,16 @@ public class ListaLaterales {
         primero.setAnterior(nuevo);
         nuevo.setSiguiente(primero);
         primero = primero.getAnterior();
+        System.out.println("Se ha insertado al inicio en la lista de laterales.");
+        tamano++;
     }
     
     public void insertarAlFinal(NodoLateral nuevo){
         ultimo.setSiguiente(nuevo);
         nuevo.setAnterior(ultimo);
         ultimo = ultimo.getSiguiente();
+        System.out.println("Se ha insertado al final en la lista de laterales.");
+        tamano++;
     }
     
     public void insertarAlMedio(NodoLateral nuevo){
@@ -59,6 +77,8 @@ public class ListaLaterales {
         temporal1.setAnterior(nuevo);
         nuevo.setSiguiente(temporal1);
         nuevo.setAnterior(temporal2);
+        System.out.println("Se ha insertado al medio en la lista de laterales.");
+        tamano++;
     }
     
     public void mostrar(){
