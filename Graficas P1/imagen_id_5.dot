@@ -1,0 +1,104 @@
+digraph imagen_id_5
+{
+	graph[color = "indigo:hotpink2", fontcolor = "white", fontname = serif, style = filled, label = "Imagen 5"];
+	node[shape = tripleoctagon, style = filled, color = navyblue, fillcolor = springgreen1, fontcolor = black, peripheries = 2];
+	edge[color = "blue:white:grey"];
+
+
+		_imagen_5[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID imagen: 5</FONT>>]
+	subgraph cluster_abb
+	{
+	graph[color = "lightcyan", fontcolor = "steelblue4", fontname = serif, style = filled, label = "Capas"];
+	node[shape = egg, style = filled, color = navyblue, fontcolor = white, peripheries = 2];
+	edge[color = deeppink];
+
+		0[label = <<FONT POINT-SIZE = "9"> ID: 0</FONT>>]
+		0
+		1[label = <<FONT POINT-SIZE = "9"> ID: 1</FONT>>]
+		0[label = <<FONT POINT-SIZE = "9"> ID: 0</FONT>>]
+		1->0
+		1[label = <<FONT POINT-SIZE = "9"> ID: 1</FONT>>]
+		2[label = <<FONT POINT-SIZE = "9"> ID: 2</FONT>>]
+		1->2
+
+		2[label = <<FONT POINT-SIZE = "9"> ID: 2</FONT>>]
+		2
+		3[label = <<FONT POINT-SIZE = "9"> ID: 3</FONT>>]
+		1[label = <<FONT POINT-SIZE = "9"> ID: 1</FONT>>]
+		3->1
+		3[label = <<FONT POINT-SIZE = "9"> ID: 3</FONT>>]
+		5[label = <<FONT POINT-SIZE = "9"> ID: 5</FONT>>]
+		3->5
+
+		4[label = <<FONT POINT-SIZE = "9"> ID: 4</FONT>>]
+		4
+		5[label = <<FONT POINT-SIZE = "9"> ID: 5</FONT>>]
+		4[label = <<FONT POINT-SIZE = "9"> ID: 4</FONT>>]
+		5->4
+		5[label = <<FONT POINT-SIZE = "9"> ID: 5</FONT>>]
+		6[label = <<FONT POINT-SIZE = "9"> ID: 6</FONT>>]
+		5->6
+
+		6[label = <<FONT POINT-SIZE = "9"> ID: 6</FONT>>]
+		6
+		7[label = <<FONT POINT-SIZE = "9"> ID: 7</FONT>>]
+		3[label = <<FONT POINT-SIZE = "9"> ID: 3</FONT>>]
+		7->3
+		7[label = <<FONT POINT-SIZE = "9"> ID: 7</FONT>>]
+		11[label = <<FONT POINT-SIZE = "9"> ID: 11</FONT>>]
+		7->11
+
+		8[label = <<FONT POINT-SIZE = "9"> ID: 8</FONT>>]
+		8
+		9[label = <<FONT POINT-SIZE = "9"> ID: 9</FONT>>]
+		8[label = <<FONT POINT-SIZE = "9"> ID: 8</FONT>>]
+		9->8
+		9[label = <<FONT POINT-SIZE = "9"> ID: 9</FONT>>]
+		10[label = <<FONT POINT-SIZE = "9"> ID: 10</FONT>>]
+		9->10
+
+		10[label = <<FONT POINT-SIZE = "9"> ID: 10</FONT>>]
+		10
+		11[label = <<FONT POINT-SIZE = "9"> ID: 11</FONT>>]
+		9[label = <<FONT POINT-SIZE = "9"> ID: 9</FONT>>]
+		11->9
+		11[label = <<FONT POINT-SIZE = "9"> ID: 11</FONT>>]
+		13[label = <<FONT POINT-SIZE = "9"> ID: 13</FONT>>]
+		11->13
+
+		12[label = <<FONT POINT-SIZE = "9"> ID: 12</FONT>>]
+		12
+		13[label = <<FONT POINT-SIZE = "9"> ID: 13</FONT>>]
+		12[label = <<FONT POINT-SIZE = "9"> ID: 12</FONT>>]
+		13->12
+		13[label = <<FONT POINT-SIZE = "9"> ID: 13</FONT>>]
+		100[label = <<FONT POINT-SIZE = "9"> ID: 100</FONT>>]
+		13->100
+
+		100[label = <<FONT POINT-SIZE = "9"> ID: 100</FONT>>]
+		100
+
+	}
+
+		subgraph cluster_lista_simplecapa_
+		{
+			graph[color = "darkturquoise:aliceblue", fontcolor = "black", style = filled, fontsize = 7, label = "Capas de la imagen 5"];
+			node[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];
+			edge[color = "purple:grey"];
+
+			capa_12[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID capa: 12 </FONT>>]
+			capa_0[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID capa: 0 </FONT>>]
+
+			capa_12->capa_0
+		}
+
+		_imagen_5->capa_12
+
+
+		capa_12->12
+
+
+		capa_0->0
+
+
+}

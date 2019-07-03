@@ -5,6 +5,8 @@
  */
 package estructuras.arboles.abb;
 
+import estructuras.matrices.dispersa.Matriz;
+
 /**
  *
  * @author g
@@ -12,6 +14,7 @@ package estructuras.arboles.abb;
 public class NodoABB {
     protected NodoABB izquierdo, derecho;
     protected int id;
+    private Matriz capa;
 
     public NodoABB() {
         this.izquierdo = null;
@@ -25,6 +28,13 @@ public class NodoABB {
         this.id = id;
     }
 
+    public NodoABB(int id, Matriz capa) {
+        this.izquierdo = null;
+        this.derecho = null;
+        this.id = id;
+        this.capa = capa;
+    }
+    
     public NodoABB getIzquierdo() {
         return izquierdo;
     }
@@ -48,7 +58,13 @@ public class NodoABB {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
+
+    public Matriz getCapa() {
+        return capa;
+    }
+
+    public void setCapa(Matriz capa) {
+        this.capa = capa;
+    }
     
 }

@@ -94,4 +94,38 @@ public class ListaVertical {
             }
         }
     }
+    
+    public boolean existe(int y){
+        if(esVacia()){
+            return false;
+        }else{
+            NodoOrtogonal temporal;
+            temporal = primero;
+            while(temporal != null){
+                if(y == temporal.getY()){
+                    System.out.println("Se encontro y: " + y);
+                    return true;
+                }else if(temporal.getAbajo() == null){
+                    System.out.println("No se encontro y: " + y);
+                    return false;
+                }
+                temporal = temporal.getAbajo();
+            }
+            return false;
+        }
+    }
+    
+    public NodoOrtogonal buscar(int y){
+        if(existe(y)){
+            NodoOrtogonal temporal;
+            temporal = primero;
+            while(temporal.getY() != y){
+                
+                temporal = temporal.getAbajo();
+            }
+            return temporal;
+        }else{
+            return null;
+        }
+    }
 }

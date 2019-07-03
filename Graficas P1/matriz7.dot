@@ -1,0 +1,233 @@
+digraph matriz_7
+{
+	graph[color = "white", fontcolor = "steelblue4", fontname = serif, style = filled, label = "Capa 7"];
+	node[shape = square, style = filled, color = black, fillcolor = "orange", fontcolor = black, peripheries = 2];
+	edge[color = black];
+
+
+		//Nodo pivote
+		XY7[group = XY7, label = <<FONT POINT-SIZE = "9">7</FONT>>]
+		//rank min de cabeceras
+		{
+		 rank = min XY7
+		//Nodos cabeceras
+		X37[group = X37, label = <<FONT POINT-SIZE = "9">3</FONT>>]
+		X47[group = X47, label = <<FONT POINT-SIZE = "9">4</FONT>>]
+		X57[group = X57, label = <<FONT POINT-SIZE = "9">5</FONT>>]
+		X67[group = X67, label = <<FONT POINT-SIZE = "9">6</FONT>>]
+		X77[group = X77, label = <<FONT POINT-SIZE = "9">7</FONT>>]
+		X87[group = X87, label = <<FONT POINT-SIZE = "9">8</FONT>>]
+		X97[group = X97, label = <<FONT POINT-SIZE = "9">9</FONT>>]
+		X107[group = X107, label = <<FONT POINT-SIZE = "9">10</FONT>>]
+		X117[group = X117, label = <<FONT POINT-SIZE = "9">11</FONT>>]
+		X127[group = X127, label = <<FONT POINT-SIZE = "9">12</FONT>>]
+		X137[group = X137, label = <<FONT POINT-SIZE = "9">13</FONT>>]
+		X147[group = X147, label = <<FONT POINT-SIZE = "9">14</FONT>>]
+		X157[group = X157, label = <<FONT POINT-SIZE = "9">15</FONT>>]
+		X167[group = X167, label = <<FONT POINT-SIZE = "9">16</FONT>>]
+		X177[group = X177, label = <<FONT POINT-SIZE = "9">17</FONT>>]
+		X187[group = X187, label = <<FONT POINT-SIZE = "9">18</FONT>>]
+		}
+
+		//Nodos laterales
+		Y37[group = XY7, label = <<FONT POINT-SIZE = "9">3</FONT>>]
+		Y47[group = XY7, label = <<FONT POINT-SIZE = "9">4</FONT>>]
+		Y57[group = XY7, label = <<FONT POINT-SIZE = "9">5</FONT>>]
+		Y67[group = XY7, label = <<FONT POINT-SIZE = "9">6</FONT>>]
+		Y77[group = XY7, label = <<FONT POINT-SIZE = "9">7</FONT>>]
+		Y87[group = XY7, label = <<FONT POINT-SIZE = "9">8</FONT>>]
+		Y97[group = XY7, label = <<FONT POINT-SIZE = "9">9</FONT>>]
+		Y107[group = XY7, label = <<FONT POINT-SIZE = "9">10</FONT>>]
+		Y117[group = XY7, label = <<FONT POINT-SIZE = "9">11</FONT>>]
+		Y127[group = XY7, label = <<FONT POINT-SIZE = "9">12</FONT>>]
+		Y137[group = XY7, label = <<FONT POINT-SIZE = "9">13</FONT>>]
+		Y147[group = XY7, label = <<FONT POINT-SIZE = "9">14</FONT>>]
+		//Enlaces cabeceras
+		XY7->X37
+		X37->X47
+		X47->X57
+		X57->X67
+		X67->X77
+		X77->X87
+		X87->X97
+		X97->X107
+		X107->X117
+		X117->X127
+		X127->X137
+		X137->X147
+		X147->X157
+		X157->X167
+		X167->X177
+		X177->X187
+		//Enlaces laterales
+		XY7->Y37
+		Y37->Y47
+		Y47->Y57
+		Y57->Y67
+		Y67->Y77
+		Y77->Y87
+		Y87->Y97
+		Y97->Y107
+		Y107->Y117
+		Y117->Y127
+		Y127->Y137
+		Y137->Y147
+		//Nodos internos
+		X3Y87[group = X37, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X3Y97[group = X37, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X3Y107[group = X37, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X3Y117[group = X37, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X3Y127[group = X37, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X3Y137[group = X37, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X3Y147[group = X37, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X4Y37[group = X47, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X4Y67[group = X47, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X4Y77[group = X47, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X4Y87[group = X47, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X4Y147[group = X47, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X5Y37[group = X57, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X5Y57[group = X57, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X5Y67[group = X57, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X5Y147[group = X57, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X6Y37[group = X67, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X6Y47[group = X67, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X6Y57[group = X67, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X6Y137[group = X67, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X6Y147[group = X67, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X7Y37[group = X77, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X7Y47[group = X77, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X7Y137[group = X77, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X8Y37[group = X87, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X8Y47[group = X87, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X8Y137[group = X87, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X9Y37[group = X97, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X10Y37[group = X107, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X11Y37[group = X117, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X12Y37[group = X127, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X13Y37[group = X137, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X14Y37[group = X147, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X15Y37[group = X157, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X16Y37[group = X167, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X17Y37[group = X177, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+		X18Y37[group = X187, label = <<FONT POINT-SIZE = "7"> #17202a</FONT>>]
+
+		//Enlaces de cabeceras y nodos internos
+		X37->X3Y87
+		//Enlaces internos internos hacia abajo
+		X3Y87->X3Y97[dir = both]
+		X3Y97->X3Y107[dir = both]
+		X3Y107->X3Y117[dir = both]
+		X3Y117->X3Y127[dir = both]
+		X3Y127->X3Y137[dir = both]
+		X3Y137->X3Y147[dir = both]
+		X47->X4Y37
+		//Enlaces internos internos hacia abajo
+		X4Y37->X4Y67[dir = both]
+		X4Y67->X4Y77[dir = both]
+		X4Y77->X4Y87[dir = both]
+		X4Y87->X4Y147[dir = both]
+		X57->X5Y37
+		//Enlaces internos internos hacia abajo
+		X5Y37->X5Y57[dir = both]
+		X5Y57->X5Y67[dir = both]
+		X5Y67->X5Y147[dir = both]
+		X67->X6Y37
+		//Enlaces internos internos hacia abajo
+		X6Y37->X6Y47[dir = both]
+		X6Y47->X6Y57[dir = both]
+		X6Y57->X6Y137[dir = both]
+		X6Y137->X6Y147[dir = both]
+		X77->X7Y37
+		//Enlaces internos internos hacia abajo
+		X7Y37->X7Y47[dir = both]
+		X7Y47->X7Y137[dir = both]
+		X87->X8Y37
+		//Enlaces internos internos hacia abajo
+		X8Y37->X8Y47[dir = both]
+		X8Y47->X8Y137[dir = both]
+		X97->X9Y37
+		//Enlaces internos internos hacia abajo
+		X107->X10Y37
+		//Enlaces internos internos hacia abajo
+		X117->X11Y37
+		//Enlaces internos internos hacia abajo
+		X127->X12Y37
+		//Enlaces internos internos hacia abajo
+		X137->X13Y37
+		//Enlaces internos internos hacia abajo
+		X147->X14Y37
+		//Enlaces internos internos hacia abajo
+		X157->X15Y37
+		//Enlaces internos internos hacia abajo
+		X167->X16Y37
+		//Enlaces internos internos hacia abajo
+		X177->X17Y37
+		//Enlaces internos internos hacia abajo
+		X187->X18Y37
+		//Enlaces internos internos hacia abajo
+
+		//Enlaces de laterales y nodos internos
+		Y37->X4Y37
+		//Enlaces internos internos hacia la derecha
+		X4Y37->X5Y37[dir = both]
+		X5Y37->X6Y37[dir = both]
+		X6Y37->X7Y37[dir = both]
+		X7Y37->X8Y37[dir = both]
+		X8Y37->X9Y37[dir = both]
+		X9Y37->X10Y37[dir = both]
+		X10Y37->X11Y37[dir = both]
+		X11Y37->X12Y37[dir = both]
+		X12Y37->X13Y37[dir = both]
+		X13Y37->X14Y37[dir = both]
+		X14Y37->X15Y37[dir = both]
+		X15Y37->X16Y37[dir = both]
+		X16Y37->X17Y37[dir = both]
+		X17Y37->X18Y37[dir = both]
+		Y47->X6Y47
+		//Enlaces internos internos hacia la derecha
+		X6Y47->X7Y47[dir = both]
+		X7Y47->X8Y47[dir = both]
+		Y57->X5Y57
+		//Enlaces internos internos hacia la derecha
+		X5Y57->X6Y57[dir = both]
+		Y67->X4Y67
+		//Enlaces internos internos hacia la derecha
+		X4Y67->X5Y67[dir = both]
+		Y77->X4Y77
+		//Enlaces internos internos hacia la derecha
+		Y87->X3Y87
+		//Enlaces internos internos hacia la derecha
+		X3Y87->X4Y87[dir = both]
+		Y97->X3Y97
+		//Enlaces internos internos hacia la derecha
+		Y107->X3Y107
+		//Enlaces internos internos hacia la derecha
+		Y117->X3Y117
+		//Enlaces internos internos hacia la derecha
+		Y127->X3Y127
+		//Enlaces internos internos hacia la derecha
+		Y137->X3Y137
+		//Enlaces internos internos hacia la derecha
+		X3Y137->X6Y137[dir = both]
+		X6Y137->X7Y137[dir = both]
+		X7Y137->X8Y137[dir = both]
+		Y147->X3Y147
+		//Enlaces internos internos hacia la derecha
+		X3Y147->X4Y147[dir = both]
+		X4Y147->X5Y147[dir = both]
+		X5Y147->X6Y147[dir = both]
+		//rank same de laterales y sus nodos internos
+		{ rank = same Y37 X4Y37 X4Y37 X5Y37 X5Y37 X6Y37 X6Y37 X7Y37 X7Y37 X8Y37 X8Y37 X9Y37 X9Y37 X10Y37 X10Y37 X11Y37 X11Y37 X12Y37 X12Y37 X13Y37 X13Y37 X14Y37 X14Y37 X15Y37 X15Y37 X16Y37 X16Y37 X17Y37 X17Y37 X18Y37 }
+		{ rank = same Y47 X6Y47 X6Y47 X7Y47 X7Y47 X8Y47 }
+		{ rank = same Y57 X5Y57 X5Y57 X6Y57 }
+		{ rank = same Y67 X4Y67 X4Y67 X5Y67 }
+		{ rank = same Y77 X4Y77 }
+		{ rank = same Y87 X3Y87 X3Y87 X4Y87 }
+		{ rank = same Y97 X3Y97 }
+		{ rank = same Y107 X3Y107 }
+		{ rank = same Y117 X3Y117 }
+		{ rank = same Y127 X3Y127 }
+		{ rank = same Y137 X3Y137 X3Y137 X6Y137 X6Y137 X7Y137 X7Y137 X8Y137 }
+		{ rank = same Y147 X3Y147 X3Y147 X4Y147 X4Y147 X5Y147 X5Y147 X6Y147 }
+
+}

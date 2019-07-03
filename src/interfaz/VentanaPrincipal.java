@@ -5,6 +5,21 @@
  */
 package interfaz;
 
+import archivos.Escritura;
+import archivos.Lectura;
+import estructuras.arboles.abb.ABB;
+import estructuras.arboles.abb.NodoABB;
+import estructuras.arboles.abb.subestructura.cola.ColaABB;
+import estructuras.arboles.avl.ArbolAVL;
+import estructuras.arboles.avl.NodoAVL;
+import estructuras.arboles.avl.subestructura.cola.ColaAVL;
+import estructuras.arboles.avl.subestructura.cola.NodoColaAVL;
+import estructuras.listas.dobles.circular.ListaDC;
+import estructuras.listas.dobles.circular.NodoDC;
+import estructuras.arboles.avl.subestructura.lista.simple.ListaSimpleImagenes;
+import estructuras.arboles.avl.subestructura.lista.simple.NodoSimpleImagenes;
+import estructuras.listas.dobles.circular.subestructura.lista.simple.ListaSimpleCapas;
+import estructuras.listas.dobles.circular.subestructura.lista.simple.NodoSimpleCapas;
 import estructuras.matrices.dispersa.cabeceras.ListaCabeceras;
 import estructuras.matrices.dispersa.laterales.ListaHorizontal;
 import estructuras.matrices.dispersa.laterales.ListaLaterales;
@@ -13,18 +28,41 @@ import estructuras.matrices.dispersa.Matriz;
 import estructuras.matrices.dispersa.cabeceras.NodoCabecera;
 import estructuras.matrices.dispersa.laterales.NodoLateral;
 import estructuras.matrices.dispersa.NodoOrtogonal;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import pojos.Usuario;
 
 /**
  *
  * @author g
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+    // :::::::::::::::::::::: Creacion de estructuras :::::::::::::::::::::: 
+    public static ABB arbol_binario_capas;
+    public static ListaDC lista_doble_imagenes;
+    public static ArbolAVL avl_usuarios;
+    
+    // File Chooser
+    String directorio_archivos = "/home/g/Documentos/FIUSAC/2019/VJ/EDD/LAB (EDD)/Proyectos/Proyecto 1 - Generador de imagenes por capas/Archivos de entrada";
+    final JFileChooser fc = new JFileChooser(directorio_archivos);
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
+        arbol_binario_capas = new ABB();
+        lista_doble_imagenes = new ListaDC();
+        avl_usuarios = new ArbolAVL();
         initComponents();
     }
 
@@ -44,14 +82,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         estado_memoria_titulo_lb = new javax.swing.JLabel();
         visualizacion_titulo_lb = new javax.swing.JLabel();
         abrir_btn = new javax.swing.JButton();
-        archivo_carga_cb = new javax.swing.JComboBox<>();
+        estado_memoria_cb = new javax.swing.JComboBox<>();
         modo_visualizar_cb = new javax.swing.JComboBox<>();
         carga_info_lb = new javax.swing.JLabel();
         visualizar_info_lb = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         archivo_menu = new javax.swing.JMenu();
         carga_sub_menu = new javax.swing.JMenu();
-        carga_capas_memoria_menu_item = new javax.swing.JMenuItem();
+        carga_capas_menu_item = new javax.swing.JMenuItem();
         carga_imagenes_menu_item = new javax.swing.JMenuItem();
         carga_usuarios_menu_item = new javax.swing.JMenuItem();
         salir_menu_item = new javax.swing.JMenuItem();
@@ -86,10 +124,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         visualizacion_titulo_lb.setText("Visualización de imagenes");
 
         abrir_btn.setText("Abrir");
+        abrir_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrir_btnActionPerformed(evt);
+            }
+        });
 
-        archivo_carga_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lista de imagenes", "Árbol de capas", "Capa", "Imagen y árbol de capas", "Árbol de usuarios" }));
+        estado_memoria_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Arbol de capas", "Lista de imagenes", "Arbol de usuarios", "Capa", "Imagen y arbol de capas" }));
+        estado_memoria_cb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estado_memoria_cbActionPerformed(evt);
+            }
+        });
 
-        modo_visualizar_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recorrido limitado", "Lista de imagenes", "Capa", "Usuario" }));
+        modo_visualizar_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lista de imagenes", "Capa", "Recorrido limitado", "Usuario" }));
         modo_visualizar_cb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modo_visualizar_cbActionPerformed(evt);
@@ -111,7 +159,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(archivo_carga_cb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(estado_memoria_cb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(carga_info_lb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(estado_memoria_titulo_lb))
                         .addGap(98, 98, 98)
@@ -143,14 +191,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(estado_memoria_titulo_lb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(visualizacion_titulo_lb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(carga_info_lb)
                     .addComponent(visualizar_info_lb))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modo_visualizar_cb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(archivo_carga_cb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estado_memoria_cb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(visualizar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,13 +210,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         carga_sub_menu.setText("Cargar");
 
-        carga_capas_memoria_menu_item.setText("Capas");
-        carga_sub_menu.add(carga_capas_memoria_menu_item);
+        carga_capas_menu_item.setText("Capas");
+        carga_capas_menu_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carga_capas_menu_itemActionPerformed(evt);
+            }
+        });
+        carga_sub_menu.add(carga_capas_menu_item);
 
         carga_imagenes_menu_item.setText("Imagenes");
+        carga_imagenes_menu_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carga_imagenes_menu_itemActionPerformed(evt);
+            }
+        });
         carga_sub_menu.add(carga_imagenes_menu_item);
 
         carga_usuarios_menu_item.setText("Usuarios");
+        carga_usuarios_menu_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carga_usuarios_menu_itemActionPerformed(evt);
+            }
+        });
         carga_sub_menu.add(carga_usuarios_menu_item);
 
         archivo_menu.add(carga_sub_menu);
@@ -186,9 +249,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         editar_menu.setText("Editar");
 
         usuarios_menu_item.setText("Gestionar usuarios");
+        usuarios_menu_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarios_menu_itemActionPerformed(evt);
+            }
+        });
         editar_menu.add(usuarios_menu_item);
 
         imagenes_menu_item.setText("Gestonar imagenes");
+        imagenes_menu_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imagenes_menu_itemActionPerformed(evt);
+            }
+        });
         editar_menu.add(imagenes_menu_item);
 
         jMenuBar1.add(editar_menu);
@@ -245,7 +318,828 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void visualizar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizar_btnActionPerformed
         // TODO add your handling code here:
+        String estado_memoria_elegido = estado_memoria_cb.getSelectedItem().toString();
+        switch(estado_memoria_elegido){
+            case "Arbol de capas":
+                if(!arbol_binario_capas.esVacio()){
+                    try {
+                        arbol_binario_capas.graficar("grafo");
+                        JOptionPane.showMessageDialog(null, "Se grafico el arbol binario de busqueda, de capas.", 
+                        "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (IOException ex) {
+                        Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se han cargado las capas", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
+            case "Lista de imagenes":
+                if(!lista_doble_imagenes.estaVacia()){
+                    try {
+                        lista_doble_imagenes.graficar();
+                        JOptionPane.showMessageDialog(null, "Se grafico la lista doble circular, de imagenes.", 
+                        "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (IOException ex) {
+                        Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se han cargado las imagenes", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
+            case "Arbol de usuarios":
+                if(!avl_usuarios.esVacio()){
+                    try {
+                        avl_usuarios.graficar("grafo");
+                        JOptionPane.showMessageDialog(null, "Se grafico el arbol AVL, de usuarios.", 
+                        "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (IOException ex) {
+                        Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se han cargado los usuarios", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
+            case "Capa":
+                if(!arbol_binario_capas.esVacio()){
+                    ColaABB cola_auxiliar =  arbol_binario_capas.listar();
+                    int tamano_cola = arbol_binario_capas.listar().getTamano();
+//                    arbol_binario_capas.inorder();
+            
+//                    System.out.println("Tamano cola: " +  tamano_cola);
+                    String[] opciones;
+                    opciones = new String[tamano_cola];
+                    for (int i = 0; i < tamano_cola; i++) {
+                        opciones[i] = String.valueOf(cola_auxiliar.desencolar().getCapa().getId());
+                    }
+//                    String capa_elegida = "0";
+
+
+                    String capa_elegida = (String) JOptionPane.showInputDialog(null, 
+                    "Capas", "Elige la capa a graficar",
+                    JOptionPane.OK_OPTION, 
+                    null, opciones, opciones[0]);
+
+
+//                    String capa_elegida = JOptionPane.showInputDialog(null, "Ingresa el numero de capa a graficar", DISPOSE_ON_CLOSE);
+                    
+                    if(capa_elegida != null){
+                        int id_capa = Integer.parseInt(capa_elegida);
+                        try {
+                            System.out.println(arbol_binario_capas.buscar(id_capa));
+                            arbol_binario_capas.buscarNodo(id_capa).getCapa().graficar("funcional", "grafo", capa_elegida);
+//                            Matriz capa_auxiliar = arbol_binario_capas.buscarNodo(id_capa).getCapa();
+//                            capa_auxiliar.graficar("imagen", "grafo", capa_elegida);
+                            JOptionPane.showMessageDialog(null, "Se grafico la capa: " +  capa_elegida, 
+                            "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se han cargado las capas", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
+            case "Imagen y arbol de capas":
+                if(!lista_doble_imagenes.estaVacia()){
+                    int tamano_lista_doble = lista_doble_imagenes.getTamano();
+                    String[] opciones;
+                    opciones = new String[tamano_lista_doble];
+                    NodoDC auxiliar = lista_doble_imagenes.getInicio();
+                    
+                    int i = 0;
+                    while(auxiliar != null && i < tamano_lista_doble){
+                        opciones[i] = String.valueOf(auxiliar.getId());
+                        auxiliar = auxiliar.getSiguiente();
+                        i++;
+                    }
+//                    String capa_elegida = "0";
+
+
+                    String imagen_elegida = (String) JOptionPane.showInputDialog(null, 
+                    "Imagen", "Elige la imagen a graficar junto al arbol de capas",
+                    JOptionPane.OK_OPTION, 
+                    null, opciones, opciones[0]);
+                    
+                    if(imagen_elegida != null){
+                        int id_imagen = Integer.parseInt(imagen_elegida);                          
+                        NodoDC imagen_grafica = lista_doble_imagenes.buscarNodo(id_imagen);
+                        try {
+                            graficarNodoImagen(imagen_grafica);
+                        } catch (IOException ex) {
+                            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        JOptionPane.showMessageDialog(null, "Se grafico la imagen: " +  imagen_elegida, 
+                        "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se han cargado las imagenes", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
+            default:
+                break;
+        }
     }//GEN-LAST:event_visualizar_btnActionPerformed
+
+    public void graficarNodoImagen(NodoDC nodo_imagen) throws IOException, InterruptedException{
+        System.out.println("Se muestra la grafica de la imagen elegida:");
+        String nombre = "imagen_id_" + nodo_imagen.getId();
+        String dot_grafo_imagen = "";
+        dot_grafo_imagen 	=  
+        "digraph imagen_id_" + nodo_imagen.getId()
+        +   "\n{"
+            +   "\n\tgraph[color = \"indigo:hotpink2\", fontcolor = \"white\", fontname = serif, style = filled, label = \"Imagen " + nodo_imagen.getId() + "\"];"
+            + 	"\n\tnode[shape = tripleoctagon, style = filled, color = navyblue, fillcolor = springgreen1, fontcolor = black, peripheries = 2];"
+            + 	"\n\tedge[color = \"blue:white:grey\"];"
+            + 	"\n"
+//            + 	"\n\tsubgraph cluster_lista_circular"
+//            + 	"\n\t{"
+            + 	"\n"
+                +   generarDotNodoImagen(nodo_imagen)
+//            +	"\n\t}"
+        +   "\n}";
+        Escritura.escribirArchivoDot(nombre, dot_grafo_imagen);
+        Escritura.generarImagenDot(nombre);
+    }
+    
+    private String generarDotNodoImagen(NodoDC nodo_imagen) throws IOException, InterruptedException{
+        String dot = "";
+        if(nodo_imagen != null){
+            // -------------------  Contendio   -------------------
+            // Nodo imagen
+            dot += 	
+            "\n\t\t_imagen_" + nodo_imagen.getId()
+            +   "[fillcolor = black, fontcolor = white, label = <"
+            +   "<FONT POINT-SIZE = \"9\"> "
+            +   "ID imagen: " + nodo_imagen.getId()
+            +   "</FONT>"
+            +   ">"
+            +   "]";
+            
+            // Obteniendo subgrafo del arbol binario
+            if(!arbol_binario_capas.esVacio()){
+                dot += arbol_binario_capas.graficar("subgrafo");
+            }
+            
+            // Lista interna de capas, de la imagen
+            if(!nodo_imagen.getCapas().esVacia()){
+                // Obteniendo el subgrafo
+                dot += "\n" + nodo_imagen.getCapas().
+                graficar("capa_", 
+                "Capas de la imagen " + nodo_imagen.getId());
+                // Creando enlace
+                dot += "\n\t\t_imagen_" + nodo_imagen.getId() + "->"
+                + "capa_" + nodo_imagen.getCapas().getInicio().getId() + "\n\n";
+            }
+            
+            // Creando enlaces entre capas
+            if(!nodo_imagen.getCapas().esVacia() && !arbol_binario_capas.esVacio()){
+                NodoSimpleCapas nodo_capa_auxiliar = nodo_imagen.getCapas().getInicio();
+                while(nodo_capa_auxiliar != null){
+                    dot += "\n\t\tcapa_" + nodo_capa_auxiliar.getId() + "->" 
+                    + nodo_capa_auxiliar.getId() + "\n\n";
+                    
+                    nodo_capa_auxiliar = nodo_capa_auxiliar.getSiguiente();
+                }
+            }
+            
+        }
+        return dot;
+    }
+    
+    private void carga_capas_menu_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carga_capas_menu_itemActionPerformed
+        // TODO add your handling code here:
+        if(arbol_binario_capas.esVacio()){
+            fc.setFileFilter(new FileNameExtensionFilter("Archivos de capas", "cap", "capa"));
+            int valor = fc.showOpenDialog(null);
+            if(valor == JFileChooser.APPROVE_OPTION){
+                File archivo = fc.getSelectedFile();
+                String ruta = archivo.getAbsolutePath();
+    //            System.out.println(ruta);
+                try {
+                    Lectura.leerCapas(ruta);
+                    JOptionPane.showMessageDialog(null, "Se ha terminado de leer el archivo de capas.", 
+                            "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ya se han cargado las capas", 
+            "Atencion", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_carga_capas_menu_itemActionPerformed
+
+    private void carga_imagenes_menu_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carga_imagenes_menu_itemActionPerformed
+        // TODO add your handling code here:
+        if(lista_doble_imagenes.estaVacia()){
+            fc.setFileFilter(new FileNameExtensionFilter("Archivos de imagenes", "im", "imagen"));
+            int valor = fc.showOpenDialog(null);
+            if(valor == JFileChooser.APPROVE_OPTION){
+                File archivo = fc.getSelectedFile();
+                String ruta = archivo.getAbsolutePath();
+    //            System.out.println(ruta);
+                try {
+                    Lectura.leerImagenes(ruta);
+                    JOptionPane.showMessageDialog(null, "Se ha terminado de leer el archivo de imagenes.", 
+                            "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ya se han cargado las imagenes", 
+            "Atencion", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_carga_imagenes_menu_itemActionPerformed
+
+    private void carga_usuarios_menu_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carga_usuarios_menu_itemActionPerformed
+        // TODO add your handling code here:
+        if(avl_usuarios.esVacio()){
+            fc.setFileFilter(new FileNameExtensionFilter("Archivos de usuarios", "usr", "usuario"));
+            int valor = fc.showOpenDialog(null);
+            if(valor == JFileChooser.APPROVE_OPTION){
+                File archivo = fc.getSelectedFile();
+                String ruta = archivo.getAbsolutePath();
+    //            System.out.println(ruta);
+                try {
+                    Lectura.leerUsuarios(ruta);
+                    JOptionPane.showMessageDialog(null, "Se ha terminado de leer el archivo de usuarios.", 
+                            "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ya se han cargado los usuarios", 
+            "Atencion", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_carga_usuarios_menu_itemActionPerformed
+
+    private void estado_memoria_cbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estado_memoria_cbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estado_memoria_cbActionPerformed
+
+    private void abrir_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_btnActionPerformed
+        // TODO add your handling code here:
+        String visualizacion_elegido = modo_visualizar_cb.getSelectedItem().toString();
+        switch(visualizacion_elegido){
+            case "Lista de imagenes":
+                if(!lista_doble_imagenes.estaVacia()){
+                    int tamano_lista_doble = lista_doble_imagenes.getTamano();
+                    String[] opciones;
+                    opciones = new String[tamano_lista_doble];
+                    NodoDC auxiliar = lista_doble_imagenes.getInicio();
+                    
+                    int k = 0;
+                    while(auxiliar != null && k < tamano_lista_doble){
+                        opciones[k] = String.valueOf(auxiliar.getId());
+                        auxiliar = auxiliar.getSiguiente();
+                        k++;
+                    }
+//                    String capa_elegida = "0";
+
+
+                    String imagen_elegida = (String) JOptionPane.showInputDialog(null, 
+                    "Imagenes", "Elige la imagen a graficar",
+                    JOptionPane.OK_OPTION, 
+                    null, opciones, opciones[0]);
+                    
+                    if(imagen_elegida != null){
+                        int id_imagen = Integer.parseInt(imagen_elegida);                          
+                        NodoDC imagen_grafica = lista_doble_imagenes.buscarNodo(id_imagen);
+                        Matriz capa_base = new Matriz();
+                        
+                        // Obteniendo capas
+                        if(!imagen_grafica.getCapas().esVacia()){
+                            NodoSimpleCapas nodo_capa_auxiliar = imagen_grafica.getCapas().getInicio();
+                            Matriz capa_temporal;
+                            capa_base = nodo_capa_auxiliar.getCapa_imagen();
+                            while(nodo_capa_auxiliar != null){
+                                capa_temporal = nodo_capa_auxiliar.getCapa_imagen();
+                                // Se insertan en la capa base
+                                int tam_col_max = capa_temporal.cabeceras.getUltimo().getX();
+                                int tam_fil_max = capa_temporal.laterales.getUltimo().getY();
+                                System.out.println("tam_col: " +  tam_col_max);
+                                for (int i = 1; i < tam_fil_max+1; i++) {
+                                    for (int j = 1; j < tam_col_max+1; j++) {
+                                       NodoCabecera cabecera_temporal;
+                                       NodoLateral lateral_temporal;
+
+                                       cabecera_temporal = capa_temporal.cabeceras.buscar(j);
+                                       lateral_temporal = capa_temporal.laterales.buscar(i);
+                                       if(lateral_temporal.getFilas().existe(j) 
+                                       && cabecera_temporal.getColumnas().existe(i)){
+                                           String color = lateral_temporal.getFilas().buscar(j).getColor();
+                                           capa_base.insertar(j, i, color);
+                                       }
+                                    }
+                                }
+                                nodo_capa_auxiliar = nodo_capa_auxiliar.getSiguiente();
+                            }
+                        }
+                        
+                        try {
+                            capa_base.graficar("imagen", "grafo", imagen_elegida);
+                        } catch (IOException ex) {
+                            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        JOptionPane.showMessageDialog(null, "Se grafico la imagen: " +  imagen_elegida, 
+                        "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se han cargado las imagenes", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
+            case "Capa":
+                if(!arbol_binario_capas.esVacio()){
+                    ColaABB cola_auxiliar =  arbol_binario_capas.listar();
+                    int tamano_cola = arbol_binario_capas.listar().getTamano();
+//                    arbol_binario_capas.inorder();
+            
+//                    System.out.println("Tamano cola: " +  tamano_cola);
+                    String[] opciones;
+                    opciones = new String[tamano_cola];
+                    for (int i = 0; i < tamano_cola; i++) {
+                        opciones[i] = String.valueOf(cola_auxiliar.desencolar().getCapa().getId());
+                    }
+//                    String capa_elegida = "0";
+
+
+                    String capa_elegida = (String) JOptionPane.showInputDialog(null, 
+                    "Capas", "Elige la capa a graficar",
+                    JOptionPane.OK_OPTION, 
+                    null, opciones, opciones[0]);
+
+
+//                    String capa_elegida = JOptionPane.showInputDialog(null, "Ingresa el numero de capa a graficar", DISPOSE_ON_CLOSE);
+                    
+                    if(capa_elegida != null){
+                        int id_capa = Integer.parseInt(capa_elegida);
+                        try {
+                            System.out.println(arbol_binario_capas.buscar(id_capa));
+                            arbol_binario_capas.buscarNodo(id_capa).getCapa().graficar("imagen", "grafo", capa_elegida);
+//                            Matriz capa_auxiliar = arbol_binario_capas.buscarNodo(id_capa).getCapa();
+//                            capa_auxiliar.graficar("imagen", "grafo", capa_elegida);
+                            JOptionPane.showMessageDialog(null, "Se grafico la capa: " +  capa_elegida, 
+                            "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se han cargado las capas", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
+            case "Recorrido limitado":
+                if(!arbol_binario_capas.esVacio()){
+                    int no_capas_max = arbol_binario_capas.listar().getTamano();
+                    
+                    String[] recorridos = new String[]{"preorder", "inorder", "postorder"};
+                    
+                    String recorrido_elegido = (String) JOptionPane.showInputDialog(null, 
+                    "Recorridos", "Elige el recorrido que deseas hacer",
+                    JOptionPane.OK_OPTION, 
+                    null, recorridos, recorridos[0]);
+                    ColaABB cola_recorridos = null;
+                    if(recorrido_elegido != null){
+                        // Obteniendo una lista con el recorrido elegido (completo)
+                        cola_recorridos = arbol_binario_capas.recorrido(recorrido_elegido);
+                        
+                        // Mostrando el numero de nodos (disponibles) que puede elegir
+                        String[] no_capas = new String[no_capas_max];
+                        for (int i = 0; i < no_capas_max; i++) {
+                            no_capas[i] = String.valueOf(i+1);
+                        }
+
+                        String no_capa_elegida = (String) JOptionPane.showInputDialog(null, 
+                        "Numero de capas", "Elige el numero de capas a graficar",
+                        JOptionPane.OK_OPTION, 
+                        null, no_capas, no_capas[0]);
+                        
+                        if(no_capa_elegida != null){
+                            int no_capas_a_graficar = Integer.parseInt(no_capa_elegida);
+                            Matriz capa_base = new Matriz();
+                            Matriz capa_temporal;
+                            capa_base = cola_recorridos.desencolar().getCapa().getCapa();
+                            int w = 0;
+                            while(w < no_capas_a_graficar){
+                                capa_temporal = cola_recorridos.desencolar().getCapa().getCapa();
+                                // Se insertan en la capa base
+                                int tam_col_max = capa_temporal.cabeceras.getUltimo().getX();
+                                int tam_fil_max = capa_temporal.laterales.getUltimo().getY();
+                                System.out.println("tam_col: " +  tam_col_max);
+                                for (int i = 1; i < tam_fil_max+1; i++) {
+                                    for (int j = 1; j < tam_col_max+1; j++) {
+                                       NodoCabecera cabecera_temporal;
+                                       NodoLateral lateral_temporal;
+
+                                       cabecera_temporal = capa_temporal.cabeceras.buscar(j);
+                                       lateral_temporal = capa_temporal.laterales.buscar(i);
+                                       if(lateral_temporal.getFilas().existe(j) 
+                                       && cabecera_temporal.getColumnas().existe(i)){
+                                           String color = lateral_temporal.getFilas().buscar(j).getColor();
+                                           capa_base.insertar(j, i, color);
+                                       }
+                                    }
+                                }
+                                w++;
+                            }
+                            
+                        try {
+                            capa_base.graficar("imagen", "grafo", recorrido_elegido + no_capa_elegida);
+                        } catch (IOException ex) {
+                            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        JOptionPane.showMessageDialog(null, "Se grafico la imagen: " +  recorrido_elegido, 
+                        "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se han cargado las capas", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
+            case "Usuario":
+                if(!avl_usuarios.esVacio()){
+                    ColaAVL cola_auxiliar =  avl_usuarios.listar();
+                    int tamano_cola = avl_usuarios.listar().getTamano();
+//                    arbol_binario_capas.inorder();
+            
+//                    System.out.println("Tamano cola: " +  tamano_cola);
+                    String[] opciones;
+                    opciones = new String[tamano_cola];
+                    for (int i = 0; i < tamano_cola; i++) {
+                        opciones[i] = String.valueOf(cola_auxiliar.desencolar().getUsuario().getId());
+                    }
+//                    String capa_elegida = "0";
+
+
+                    String usuario_elegido = (String) JOptionPane.showInputDialog(null, 
+                    "Usuarios", "Elige el usuario, para mostrar las imagenes que posee este",
+                    JOptionPane.OK_OPTION, 
+                    null, opciones, opciones[0]);
+
+
+//                    String capa_elegida = JOptionPane.showInputDialog(null, "Ingresa el numero de capa a graficar", DISPOSE_ON_CLOSE);
+                    
+                    if(usuario_elegido != null){
+                        ListaSimpleImagenes lsi_auxiliar = avl_usuarios.buscarNodo(usuario_elegido).getUsuario().getImagenes();
+                        
+//                        int id_usuario = Integer.parseInt(usuario_elegido);
+                        
+                        if(!lsi_auxiliar.esVacia()){
+                            int tamano_lista_imagenes = lsi_auxiliar.getTamano();
+                            String[] imagenes_usuario;
+                            imagenes_usuario = new String[tamano_lista_imagenes];
+
+                            NodoSimpleImagenes auxiliar_LSI = lsi_auxiliar.getInicio();
+
+                            int kk = 0;
+                            
+                            while(auxiliar_LSI != null && kk < tamano_lista_imagenes){
+                                imagenes_usuario[kk] = String.valueOf(auxiliar_LSI.getId());
+                                auxiliar_LSI = auxiliar_LSI.getSiguiente();
+                                kk++;
+                            }
+
+                            String imagen_elegida_u = (String) JOptionPane.showInputDialog(null, 
+                            "Imagenes", "Elige la imagen a graficar",
+                            JOptionPane.OK_OPTION, 
+                            null, imagenes_usuario, imagenes_usuario[0]);
+
+                            if(imagen_elegida_u != null){
+                                int id_imagen = Integer.parseInt(imagen_elegida_u);                          
+                                NodoSimpleImagenes imagen_grafica = lsi_auxiliar.buscarNodo(id_imagen);
+                                Matriz capa_base = new Matriz();
+
+                                // Obteniendo capas
+                                if(!imagen_grafica.getImagen_usuario().getCapas().esVacia()){
+                                    NodoSimpleCapas nodo_capa_auxiliar = imagen_grafica.getImagen_usuario().getCapas().getInicio();
+                                    Matriz capa_temporal;
+                                    capa_base = nodo_capa_auxiliar.getCapa_imagen();
+                                    while(nodo_capa_auxiliar != null){
+                                        capa_temporal = nodo_capa_auxiliar.getCapa_imagen();
+                                        // Se insertan en la capa base
+                                        int tam_col_max = capa_temporal.cabeceras.getUltimo().getX();
+                                        int tam_fil_max = capa_temporal.laterales.getUltimo().getY();
+                                        System.out.println("tam_col: " +  tam_col_max);
+                                        for (int i = 1; i < tam_fil_max+1; i++) {
+                                            for (int j = 1; j < tam_col_max+1; j++) {
+                                               NodoCabecera cabecera_temporal;
+                                               NodoLateral lateral_temporal;
+
+                                               cabecera_temporal = capa_temporal.cabeceras.buscar(j);
+                                               lateral_temporal = capa_temporal.laterales.buscar(i);
+                                               if(lateral_temporal.getFilas().existe(j) 
+                                               && cabecera_temporal.getColumnas().existe(i)){
+                                                   String color = lateral_temporal.getFilas().buscar(j).getColor();
+                                                   capa_base.insertar(j, i, color);
+                                               }
+                                            }
+                                        }
+                                        nodo_capa_auxiliar = nodo_capa_auxiliar.getSiguiente();
+                                    }
+                                }
+
+                                try {
+                                    capa_base.graficar("imagen", "grafo", imagen_elegida_u);
+                                } catch (IOException ex) {
+                                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                                } catch (InterruptedException ex) {
+                                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                JOptionPane.showMessageDialog(null, "Se grafico la imagen: " +  imagen_elegida_u, 
+                                "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Este usuario no tiene imagenes", 
+                            "Atencion", JOptionPane.WARNING_MESSAGE);
+                        }
+                        
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Elige una un usuario graficar", 
+                        "Atencion", JOptionPane.WARNING_MESSAGE);
+                    }
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se han cargado los usuarios", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_abrir_btnActionPerformed
+
+    private void usuarios_menu_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarios_menu_itemActionPerformed
+        // TODO add your handling code here:
+        if(!avl_usuarios.esVacio()){
+            ColaAVL cola_auxiliar =  avl_usuarios.listar();
+            int tamano_cola = avl_usuarios.listar().getTamano();
+
+            String[] usuarios;
+            usuarios = new String[tamano_cola];
+            for (int i = 0; i < tamano_cola; i++) {
+                usuarios[i] = String.valueOf(cola_auxiliar.desencolar().getUsuario().getId());
+            }
+
+            Object[] opciones = {"Agregar", "Modificar", "Eliminar"};
+            int opcion_elegida;
+            opcion_elegida = JOptionPane.showOptionDialog(null, 
+                    "Usuarios", "Elige lo que deseas hacer.",
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, opciones, opciones[0]);
+            
+            if(opcion_elegida == JOptionPane.YES_OPTION){
+                String id_usuario_nuevo = JOptionPane.showInputDialog("Ingresa el ID, del nuevo usuario.");
+                if(!avl_usuarios.buscar(id_usuario_nuevo)){
+                    avl_usuarios.insertar(new Usuario(id_usuario_nuevo));
+                    JOptionPane.showMessageDialog(null, "Se inserto correctamente el usuario con ID: " +  id_usuario_nuevo, 
+                    "¡Muy bien!", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese ID",
+                    "¡Atencion!", JOptionPane.WARNING_MESSAGE);
+                }
+            }else if(opcion_elegida == JOptionPane.NO_OPTION){
+                String usuario_elegido = (String) JOptionPane.showInputDialog(null, 
+                "Usuarios", "Elige el usuario que deseas modificar.",
+                JOptionPane.OK_OPTION, 
+                null, usuarios, usuarios[0]);
+                
+                if(usuario_elegido != null){
+                    String[] modificar_opcion = {"Agregar imagen", "Eliminar imagen"};
+                    int opcion_modificar;
+                    
+                    opcion_modificar = JOptionPane.showOptionDialog(null, 
+                    "Usuarios", "Elige lo que deseas hacer.",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, modificar_opcion, modificar_opcion[0]);
+                    
+                    if(opcion_modificar == JOptionPane.YES_OPTION){
+                         if(!lista_doble_imagenes.estaVacia()){
+                            int tamano_lista_doble = lista_doble_imagenes.getTamano();
+                            String[] imagenes_disponibles;
+                            imagenes_disponibles = new String[tamano_lista_doble];
+                            NodoDC auxiliar = lista_doble_imagenes.getInicio();
+
+                            int k = 0;
+                            while(auxiliar != null && k < tamano_lista_doble){ 
+                                imagenes_disponibles[k] = String.valueOf(auxiliar.getId());
+                                auxiliar = auxiliar.getSiguiente();
+                                k++;
+                            }
+
+                            String imagen_elegida = (String) JOptionPane.showInputDialog(null, 
+                            "Imagenes", "Elige la imagen a agregar al usuario",
+                            JOptionPane.OK_OPTION, 
+                            null, imagenes_disponibles, imagenes_disponibles[0]);
+                            
+                            if(imagen_elegida != null){
+                                int id_img = Integer.parseInt(imagen_elegida);
+                                
+//                                if(!avl_usuarios.buscarNodo(usuario_elegido).getUsuario().getImagenes().buscar(id_img)){
+                                if(avl_usuarios.buscarNodo(usuario_elegido).getUsuario().getImagenes() == null){
+                                    avl_usuarios.buscarNodo(usuario_elegido).getUsuario().getImagenes().agregarAlFinal(new NodoSimpleImagenes(id_img, lista_doble_imagenes.buscarNodo(id_img)));
+                                    JOptionPane.showMessageDialog(null, "Se agrego correctamente la imagen con ID: " +  id_img 
+                                            + "\n, a usuario con ID: " + usuario_elegido, 
+                                    "¡Muy bien!", JOptionPane.INFORMATION_MESSAGE);
+                                }else if(!avl_usuarios.buscarNodo(usuario_elegido).getUsuario().getImagenes().buscar(id_img)){
+                                    avl_usuarios.buscarNodo(usuario_elegido).getUsuario().getImagenes().agregarAlFinal(new NodoSimpleImagenes(id_img, lista_doble_imagenes.buscarNodo(id_img)));
+                                    JOptionPane.showMessageDialog(null, "Se agrego correctamente la imagen con ID: " +  id_img 
+                                            + "\n, a usuario con ID: " + usuario_elegido, 
+                                    "¡Muy bien!", JOptionPane.INFORMATION_MESSAGE);
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "El usuario ID: " + usuario_elegido +  ", ya contiene la imagen ID: " + id_img, 
+                                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                                }
+                                                                    
+                            }
+                         }else{
+                            JOptionPane.showMessageDialog(null, "No se han cargado las imagenes", 
+                            "Atencion", JOptionPane.WARNING_MESSAGE);
+                         }
+                    }else if(opcion_modificar == JOptionPane.NO_OPTION){
+                        if(!avl_usuarios.buscarNodo(usuario_elegido).getUsuario().getImagenes().esVacia()){
+                            int tamano_lista_img = avl_usuarios.buscarNodo(usuario_elegido).getUsuario().getImagenes().getTamano();
+                            String[] imagenes_disponibles;
+                            imagenes_disponibles = new String[tamano_lista_img];
+                            NodoSimpleImagenes auxiliar = avl_usuarios.buscarNodo(usuario_elegido).getUsuario().getImagenes().getInicio();
+
+                            int k = 0;
+                            while(auxiliar != null && k < tamano_lista_img){ 
+                                imagenes_disponibles[k] = String.valueOf(auxiliar.getId());
+                                auxiliar = auxiliar.getSiguiente();
+                                k++;
+                            }
+
+                            String imagen_elegida = (String) JOptionPane.showInputDialog(null, 
+                            "Imagenes", "Elige la imagen a eliminar del usuario",
+                            JOptionPane.OK_OPTION, 
+                            null, imagenes_disponibles, imagenes_disponibles[0]);
+                            
+                            if(imagen_elegida != null){
+                                int id_img = Integer.parseInt(imagen_elegida);
+                                avl_usuarios.buscarNodo(usuario_elegido).getUsuario().getImagenes().eliminar(id_img);
+                                JOptionPane.showMessageDialog(null, "Se elimino correctamente la imagen con ID: " +  id_img 
+                                + "\n, al usuario con ID: " + usuario_elegido, 
+                                "¡Muy bien!", JOptionPane.INFORMATION_MESSAGE);
+                            }
+                         }else{
+                            JOptionPane.showMessageDialog(null, "El usuario no tiene imagenes", 
+                            "Atencion", JOptionPane.WARNING_MESSAGE);
+                         }
+                    }
+                }
+            }else if(opcion_elegida == JOptionPane.CANCEL_OPTION){
+                String usuario_elegido = (String) JOptionPane.showInputDialog(null, 
+                "Usuarios", "Elige el usuario que deseas eliminar.",
+                JOptionPane.OK_OPTION, 
+                null, usuarios, usuarios[0]);
+                if(usuario_elegido != null){
+                    avl_usuarios.eliminar(usuario_elegido);
+                    JOptionPane.showMessageDialog(null, "Se elimino el usuario con ID: " + usuario_elegido,
+                    "¡Atencion!", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "No se han cargado los usuarios", 
+            "Atencion", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_usuarios_menu_itemActionPerformed
+
+    private void imagenes_menu_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imagenes_menu_itemActionPerformed
+        // TODO add your handling code here:
+        if(!lista_doble_imagenes.estaVacia()){
+            String[] opciones = {"Agregar imagen", "Eliminar imagen"};
+            int opcion_imagen = JOptionPane.showOptionDialog(null, 
+                    "Usuarios", "Elige lo que deseas hacer.",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, opciones, opciones[0]);
+            
+            if(opcion_imagen == JOptionPane.YES_OPTION){
+                if(!arbol_binario_capas.esVacio()){
+                    ColaABB cola_auxiliar =  arbol_binario_capas.listar();
+                    int tamano_cola = arbol_binario_capas.listar().getTamano();
+//                    arbol_binario_capas.inorder();
+            
+//                    System.out.println("Tamano cola: " +  tamano_cola);
+                    String[] capas;
+                    capas = new String[tamano_cola];
+                    for (int i = 0; i < tamano_cola; i++) {
+                        capas[i] = String.valueOf(cola_auxiliar.desencolar().getCapa().getId());
+                    }
+                    JList list = new JList(capas);
+                    
+                    String id_imagen_nuevo = JOptionPane.showInputDialog("Ingresa el ID (un entero), de la nueva imagen.");
+                    JOptionPane.showConfirmDialog(null, list, "Disconnect Products", JOptionPane.YES_NO_OPTION);
+                    ListaSimpleCapas lista_capas_nueva = new ListaSimpleCapas();
+                    int capas_seleccinadas;
+                    capas_seleccinadas = list.getSelectedIndex();
+                    Matriz capa_nueva;
+//                    for (int i = 0; i < capas_seleccinadas.length; i++) {
+                        capa_nueva = arbol_binario_capas.buscarNodo(capas_seleccinadas).getCapa();
+                        lista_capas_nueva.agregarAlFinal(new NodoSimpleCapas(capas_seleccinadas, capa_nueva));
+//                    }
+                    if(!lista_doble_imagenes.buscar(Integer.parseInt(id_imagen_nuevo))){
+                        lista_doble_imagenes.insertar(new NodoDC(Integer.parseInt(id_imagen_nuevo), lista_capas_nueva));
+                        JOptionPane.showMessageDialog(null, "Se agrego correctamente la imagen con ID: " +  id_imagen_nuevo, 
+                        "¡Muy bien!", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se han cargado las capas", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+                
+            }else if(opcion_imagen == JOptionPane.NO_OPTION){
+                if(!arbol_binario_capas.esVacio()){
+                    int tamano_lista_doble = lista_doble_imagenes.getTamano();
+                    String[] imagenes;
+                    imagenes = new String[tamano_lista_doble];
+                    NodoDC auxiliar = lista_doble_imagenes.getInicio();
+
+                    int k = 0;
+                    while(auxiliar != null && k < tamano_lista_doble){
+                        imagenes[k] = String.valueOf(auxiliar.getId());
+                        auxiliar = auxiliar.getSiguiente();
+                        k++;
+                    }
+//                    String capa_elegida = "0";
+
+                    String imagen_elegida = "0";
+                    imagen_elegida = (String) JOptionPane.showInputDialog(null, 
+                    "Imagenes", "Elige la imagen a graficar",
+                    JOptionPane.OK_OPTION, 
+                    null, imagenes, imagenes[0]);
+
+                    int img_id = Integer.parseInt(imagen_elegida);
+                    
+                    if(imagen_elegida != null){
+                        ColaAVL cola_avl_aux = avl_usuarios.listar();
+                        int tamano_cola_avl = cola_avl_aux.getTamano();
+                        int h = 0;
+//                        while(h < tamano_cola_avl){
+//                            NodoColaAVL nodo_avl_aux = cola_avl_aux.desencolar();
+//                            System.out.println("IMG a buscar: " +  img_id);
+//                            if(nodo_avl_aux.getUsuario().getImagenes().buscarNodo(Integer.parseInt(imagen_elegida)) != null){
+//                                if(avl_usuarios.buscar(nodo_avl_aux.getUsuario().getId())){
+//                                    avl_usuarios.buscarNodo(nodo_avl_aux.getUsuario().getId()).getUsuario().
+//                                    getImagenes().eliminar(Integer.parseInt(imagen_elegida));
+//                                }
+//                            }
+//                            h++;
+//                        }
+                        lista_doble_imagenes.eliminar(Integer.parseInt(imagen_elegida));
+                        JOptionPane.showMessageDialog(null, "Se elimino correctamente la imagen con ID: " +  imagen_elegida, 
+                        "¡Muy bien!", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se han cargado las capas", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "No se han cargado las imagenes", 
+            "Atencion", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_imagenes_menu_itemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,8 +1168,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         
-        // ||||||||||||||||||||||||     Test    ||||||||||||||||||||||||
-        // ................ Listas de matriz ...................
+// ||||||||||||||||||||||||||||||||||||||||||||||||     Test     ||||||||||||||||||||||||||||||||||||||||||||||||
+// ................................ Listas Matriz ...................................
 //            System.out.println("Lista vertical");
 //            ListaVertical lv = new ListaVertical();
 //            lv.insertar(new NodoOrtogonal("1", 0, 0));
@@ -319,19 +1213,67 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 //            llat.mostrar();
 //            NodoLateral n  = llat.buscar(100);
 //            System.out.println("Nodo n: " + n.getY());
-        Matriz matriz = new Matriz();
-//        matriz.llenar(3, 3);
-        matriz.insertar(0, 0, "#32CD32");
-        matriz.insertar(0, 1, "#32CD35");
-        matriz.insertar(0, 2, "#32CD42");
-        matriz.insertar(1, 1, "#32CD32");
-        matriz.insertar(2, 2, "#32CD32");
-        
-//        String dato = matriz.laterales.buscar(0).getFilas().primero.getAbajo().getDerecha().getColor();
-        matriz.graficar("grafo", "1");
-            
+// ................................ Matriz ...................................
+//        Matriz matriz = new Matriz();
+//////        matriz.llenar(3, 3);
+//        matriz.insertar(0, 0, "#32CD32");
+//        matriz.insertar(0, 1, "#32CD35");
+//        matriz.insertar(0, 2, "#32CD42");
+//        matriz.insertar(1, 1, "#32CD32");
+//        matriz.insertar(1, 1, "#FF4500");
+//        matriz.insertar(2, 2, "#32CD32");
+////        
+//        matriz.graficar("grafo", "1");
+ //        String dato = matriz.laterales.buscar(0).getFilas().primero.getAbajo().getDerecha().getColor();          
 //        System.out.println(dato);
-        
+// ................................ ABB ...................................
+//        ABB binario = new ABB();
+//        binario.insertar(10);
+//        binario.insertar(2);
+//        binario.insertar(15);
+//        binario.insertar(25);
+//        binario.insertar(5);
+//        binario.insertar(1);
+//        binario.insertar(1);
+//        binario.inorder();
+//        System.out.println(binario.buscar(65));
+//        binario.graficar("grafo");
+// ................................ AVL ...................................
+//        ArbolAVL avl = new ArbolAVL();
+//        ListaSimpleImagenes ls = new ListaSimpleImagenes();
+//        ls.agregarAlFinal(1);
+//        ls.agregarAlFinal(2);
+//        ls.agregarAlFinal(3);
+//        avl.insertar(new Usuario("6"));
+//        avl.buscarNodo("6").getUsuario().setImagenes(ls);
+//        avl.insertar(new Usuario("4"));
+//        avl.insertar(new Usuario("7"));
+//        avl.insertar(new Usuario("15"));
+//        avl.insertar(new Usuario("1"));
+//        avl.insertar(new Usuario("2"));
+//        avl.insertar(new Usuario("22"));
+//        avl.inorder();
+//        avl.graficar("grafo");
+//        avl.graficar("grafo");
+// ................................ Circular doble ...................................
+//        ListaDC ld = new ListaDC();
+//        ListaSimpleCapas lc = new ListaSimpleCapas();
+//        lc.agregarAlFinal(3);
+//        lc.agregarAlFinal(7);
+//        lc.agregarAlFinal(4);
+//        lc.agregarAlFinal(12);
+//        ld.insertar(new NodoDC(2, lc));
+//        ld.insertar(new NodoDC(5, null));
+//        ld.insertar(new NodoDC(1, null));
+//        ld.insertar(new NodoDC(3, null));
+//        ld.insertar(new NodoDC(4, null));
+//        ld.mostrar();
+//        ld.eliminar(1);
+//        ld.eliminar(3);
+//        ld.eliminar(5);
+//        ld.mostrar();
+//        ld.graficar();
+// ||||||||||||||||||||||||||||||||||||||||||||||||     Test     ||||||||||||||||||||||||||||||||||||||||||||||||
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -342,16 +1284,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton abrir_btn;
-    private javax.swing.JComboBox<String> archivo_carga_cb;
     private javax.swing.JMenu archivo_menu;
     private javax.swing.JMenu ayuda_menu;
     private javax.swing.JLabel bienvenido_lb;
-    private javax.swing.JMenuItem carga_capas_memoria_menu_item;
+    private javax.swing.JMenuItem carga_capas_menu_item;
     private javax.swing.JMenuItem carga_imagenes_menu_item;
     private javax.swing.JLabel carga_info_lb;
     private javax.swing.JMenu carga_sub_menu;
     private javax.swing.JMenuItem carga_usuarios_menu_item;
     private javax.swing.JMenu editar_menu;
+    private javax.swing.JComboBox<String> estado_memoria_cb;
     private javax.swing.JLabel estado_memoria_titulo_lb;
     private javax.swing.JMenuItem imagenes_menu_item;
     private javax.swing.JLabel info_lb;

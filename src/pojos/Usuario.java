@@ -5,7 +5,7 @@
  */
 package pojos;
 
-import estructuras.listas.simples.ListaSimple;
+import estructuras.arboles.avl.subestructura.lista.simple.ListaSimpleImagenes;
 
 /**
  *
@@ -13,10 +13,16 @@ import estructuras.listas.simples.ListaSimple;
  */
 public class Usuario {
     private String id;
-    private ListaSimple imagenes;
+    private ListaSimpleImagenes imagenes;
 
     public Usuario(String id) {
         this.id = id;
+        this.imagenes = null;
+    }
+
+    public Usuario(String id, ListaSimpleImagenes imagenes) {
+        this.id = id;
+        this.imagenes = imagenes;
     }
     
     public String getId() {
@@ -27,11 +33,11 @@ public class Usuario {
         this.id = id;
     }
 
-    public ListaSimple getImagenes() {
+    public ListaSimpleImagenes getImagenes() {
         return imagenes;
     }
 
-    public void setImagenes(ListaSimple imagenes) {
+    public void setImagenes(ListaSimpleImagenes imagenes) {
         this.imagenes = imagenes;
     }
     

@@ -94,5 +94,39 @@ public class ListaHorizontal {
             }
         }
     }
+    
+    public boolean existe(int x){
+        if(esVacia()){
+            return false;
+        }else{
+            NodoOrtogonal temporal;
+            temporal = primero;
+            while(temporal != null){
+                if(x == temporal.getX()){
+                    System.out.println("Se encontro x: " + x);
+                    return true;
+                }else if(temporal.getDerecha()== null){
+                    System.out.println("No se encontro x: " + x);
+                    return false;
+                }
+                temporal = temporal.getDerecha();
+            }
+            return false;
+        }
+    }
+    
+    public NodoOrtogonal buscar(int x){
+        if(existe(x)){
+            NodoOrtogonal temporal;
+            temporal = primero;
+            while(temporal.getX() != x){
+                
+                temporal = temporal.getDerecha();
+            }
+            return temporal;
+        }else{
+            return null;
+        }
+    }
 
 }

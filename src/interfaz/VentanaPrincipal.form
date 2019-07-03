@@ -14,20 +14,29 @@
                 <Property name="text" type="java.lang.String" value="Cargar"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="carga_capas_memoria_menu_item">
+                <MenuItem class="javax.swing.JMenuItem" name="carga_capas_menu_item">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Capas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="carga_capas_menu_itemActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="carga_imagenes_menu_item">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Imagenes"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="carga_imagenes_menu_itemActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="carga_usuarios_menu_item">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Usuarios"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="carga_usuarios_menu_itemActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -50,11 +59,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gestionar usuarios"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usuarios_menu_itemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="imagenes_menu_item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gestonar imagenes"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imagenes_menu_itemActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -135,7 +150,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="archivo_carga_cb" max="32767" attributes="0"/>
+                                  <Component id="estado_memoria_cb" max="32767" attributes="0"/>
                                   <Component id="carga_info_lb" max="32767" attributes="0"/>
                               </Group>
                               <Component id="estado_memoria_titulo_lb" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -178,7 +193,7 @@
                       <Component id="estado_memoria_titulo_lb" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="visualizacion_titulo_lb" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="carga_info_lb" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="visualizar_info_lb" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -186,7 +201,7 @@
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="modo_visualizar_cb" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="archivo_carga_cb" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="estado_memoria_cb" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -244,19 +259,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Abrir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abrir_btnActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="archivo_carga_cb">
+        <Component class="javax.swing.JComboBox" name="estado_memoria_cb">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="5">
-                <StringItem index="0" value="Lista de imagenes"/>
-                <StringItem index="1" value="&#xc1;rbol de capas"/>
-                <StringItem index="2" value="Capa"/>
-                <StringItem index="3" value="Imagen y &#xe1;rbol de capas"/>
-                <StringItem index="4" value="&#xc1;rbol de usuarios"/>
+                <StringItem index="0" value="Arbol de capas"/>
+                <StringItem index="1" value="Lista de imagenes"/>
+                <StringItem index="2" value="Arbol de usuarios"/>
+                <StringItem index="3" value="Capa"/>
+                <StringItem index="4" value="Imagen y arbol de capas"/>
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="estado_memoria_cbActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -265,9 +286,9 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Recorrido limitado"/>
-                <StringItem index="1" value="Lista de imagenes"/>
-                <StringItem index="2" value="Capa"/>
+                <StringItem index="0" value="Lista de imagenes"/>
+                <StringItem index="1" value="Capa"/>
+                <StringItem index="2" value="Recorrido limitado"/>
                 <StringItem index="3" value="Usuario"/>
               </StringArray>
             </Property>

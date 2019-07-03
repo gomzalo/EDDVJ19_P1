@@ -8,7 +8,7 @@ package estructuras.listas.dobles.circular;
 import archivos.Escritura;
 import estructuras.arboles.abb.NodoABB;
 import estructuras.listas.dobles.circular.NodoDC;
-import estructuras.listas.simples.ListaSimple;
+import estructuras.arboles.avl.subestructura.lista.simple.ListaSimpleImagenes;
 import java.io.IOException;
 
 /**
@@ -24,30 +24,79 @@ public class ListaDC {
     public boolean estaVacia(){
         return inicio == null;
     }
-    
-    public void insertarAlFinal(int id, String nombre, String apellido){
-        if(buscar(id)){
+
+    public NodoDC getInicio() {
+        return inicio;
+    }
+
+    public NodoDC getFin() {
+        return fin;
+    }
+
+    public int getTamano() {
+        return tamano;
+    }
+        
+    public void insertar(NodoDC nuevo){
+        if(buscar(nuevo.getId())){
             System.out.println("Ya se ha ingresado un usuario con este ID.");
         }else{
-            NodoDC nuevo = new NodoDC(id, nombre, apellido, null);
-//            nuevo.setSiguiente(inicio);
             if(estaVacia()){
                 inicio = fin = nuevo;
-                inicio.setSiguiente(fin);
-                inicio.setAnterior(fin);
-                fin.setSiguiente(inicio);
-                System.out.println("Se inserto correctamente el ID: " + id);
+                nuevo.setSiguiente(nuevo);
+                nuevo.setAnterior(nuevo);
+                System.out.println("Lista vacia, se inserto correctamente el ID: " + nuevo.getId());
+            }else if(nuevo.getId() <= inicio.getId()){
+                insertarAlInicio(nuevo);
+            }else if(nuevo.getId() >= fin.getId()){
+                insertarAlFinal(nuevo);
             }else{
-//                NodoDC nuevo = new NodoDC(id, nombre, apellido);
-                fin.setSiguiente(nuevo);
-                nuevo.setAnterior(fin);
-                nuevo.setSiguiente(inicio);
-                inicio.setAnterior(nuevo);
-                fin = nuevo;                
-                System.out.println("Se inserto correctamente el ID: " + id);
+                insertarAlMedio(nuevo);
             }
             tamano++;
         }
+    }
+    
+    protected void insertarAlInicio(NodoDC nuevo){
+        nuevo.setAnterior(fin);
+        fin.setSiguiente(nuevo);
+        inicio.setAnterior(nuevo);
+        nuevo.setSiguiente(inicio);
+        inicio = nuevo;
+        System.out.println("Se inserto correctamente el ID: " + nuevo.getId() + ", al inicio.");
+    }
+    
+    protected void insertarAlFinal(NodoDC nuevo){
+        fin.setSiguiente(nuevo);
+        nuevo.setAnterior(fin);
+        nuevo.setSiguiente(inicio);
+        inicio.setAnterior(nuevo);
+        fin = nuevo;
+        System.out.println("Se inserto correctamente el ID: " + nuevo.getId() + ", al final.");
+    }
+    
+    protected void insertarAlMedio(NodoDC nuevo){
+        boolean ins = false;
+        NodoDC temporal = inicio;
+        NodoDC auxiliar = inicio.getSiguiente();
+        while(auxiliar != null){
+            if(nuevo.getId() >= temporal.getId() && nuevo.getId() <= auxiliar.getId()){
+                temporal.setSiguiente(nuevo);
+                nuevo.setAnterior(temporal);
+                nuevo.setSiguiente(auxiliar);
+                auxiliar.setAnterior(nuevo);
+                ins = true;
+                break;
+            } else {
+                temporal = auxiliar;
+                auxiliar = auxiliar.getSiguiente();
+            }
+        }
+        if(!ins){
+            temporal.setSiguiente(nuevo);
+            nuevo.setAnterior(temporal);
+        }
+        System.out.println("Se inserto correctamente el ID: " + nuevo.getId() + ", al medio.");
     }
     
     public boolean buscar(int id){
@@ -55,28 +104,48 @@ public class ListaDC {
             System.out.println("Lista vacia.");
             return false;
         } else {
-            NodoDC auxiliar = inicio;
-//            if(inicio == fin){
-//                System.out.println( "Se ha encontrado el nodo: "
-//                                +   "\nID: " + auxiliar.getId()
-//                                +   "\nNombre: " +  auxiliar.getNombre()
-//                                +   "\nApellido: " + auxiliar.getApellido()
-//                                +   "<->");
-//                    return true;
-//            }
-            while(auxiliar.getSiguiente() != inicio){
-                if(id == auxiliar.getId() || id == fin.getId()){
+            if(id == inicio.getId()){
+                System.out.println( "Se ha encontrado el nodo: "
+                                +   "\nID: " + inicio.getId());
+                return true;
+            }
+            NodoDC auxiliar = inicio.getSiguiente();
+            while(auxiliar != inicio){
+                if(id == auxiliar.getId()){
                     System.out.println( "Se ha encontrado el nodo: "
-                                +   "\nID: " + auxiliar.getId()
-                                +   "\nNombre: " +  auxiliar.getNombre()
-                                +   "\nApellido: " + auxiliar.getApellido()
-                                +   "<->");
+                                +   "\nID: " + auxiliar.getId());
                     return true;
                 }
                 auxiliar = auxiliar.getSiguiente();
             }
         }
         return false;
+    }
+    
+    public NodoDC buscarNodo(int id){
+        NodoDC encontrado;
+        if(estaVacia()){
+            System.out.println("Lista vacia.");
+            return null;
+        } else {
+            if(id == inicio.getId()){
+                System.out.println( "Se ha encontrado el nodo: "
+                                +   "\nID: " + inicio.getId());
+                encontrado = inicio;
+                return encontrado;
+            }
+            NodoDC auxiliar = inicio.getSiguiente();
+            while(auxiliar != inicio){
+                if(id == auxiliar.getId()){
+                    System.out.println( "Se ha encontrado el nodo: "
+                                +   "\nID: " + auxiliar.getId());
+                    encontrado = auxiliar;
+                    return encontrado;
+                }
+                auxiliar = auxiliar.getSiguiente();
+            }
+        }
+        return null;
     }
     
     public void eliminar(int id){
@@ -87,38 +156,36 @@ public class ListaDC {
             if(id == inicio.getId() && id == fin.getId() && inicio == fin){
                  System.out.println( "Se ha eliminado el nodo: "
                                 +   "\nID: " + inicio.getId()
-                                +   "\nNombre: " +  inicio.getNombre()
-                                +   "\nApellido: " + inicio.getApellido()
-                                +   "<->");
+                                +   ", la lista ha quedado vacia.");
                 fin = inicio = null;
-            // Eliminacion al frente
+                tamano = 0;
+                return;
+            // Eliminacion al inicio
             }else if(id == inicio.getId()){
                 System.out.println( "Se ha eliminado el nodo: "
                                 +   "\nID: " + inicio.getId()
-                                +   "\nNombre: " +  inicio.getNombre()
-                                +   "\nApellido: " + inicio.getApellido()
-                                +   "<->");
+                                +   ", al inicio.");
                 inicio = inicio.getSiguiente();
                 inicio.setAnterior(fin);
                 fin.setSiguiente(inicio);
+                tamano--;
+            // Eliminacion al final
             }else if(id == fin.getId()){
                 System.out.println( "Se ha eliminado el nodo: "
                                 +   "\nID: " + fin.getId()
-                                +   "\nNombre: " +  fin.getNombre()
-                                +   "\nApellido: " + fin.getApellido()
-                                +   "<->");
+                                +   ", al final.");
                 fin = fin.getAnterior();
                 fin.setSiguiente(inicio);
                 inicio.setAnterior(fin);
+                tamano--;
+            // Eliminacion al medio
             }else{
-                NodoDC auxiliar = inicio;
-                while(auxiliar != fin){
+                NodoDC auxiliar = inicio.getSiguiente();
+                while(auxiliar != inicio){
                     if(id == auxiliar.getId()){
                         System.out.println( "Se ha eliminado el nodo: "
                                +   "\nID: " + auxiliar.getId()
-                               +   "\nNombre: " +  auxiliar.getNombre()
-                               +   "\nApellido: " + auxiliar.getApellido()
-                               +   "<->");
+                               +   ", al medio.");
                         auxiliar.getSiguiente().setAnterior(auxiliar.getAnterior());
                         auxiliar.getAnterior().setSiguiente(auxiliar.getSiguiente());
                         auxiliar.setSiguiente(null);
@@ -127,6 +194,7 @@ public class ListaDC {
                     }
                     auxiliar = auxiliar.getSiguiente();
                 }
+                tamano--;
             }
         }
     }
@@ -136,85 +204,99 @@ public class ListaDC {
             System.out.println("Lista vacia.");
         } else {
             System.out.println("Se muestra los elementos en la lista:");
-            NodoDC auxiliar = inicio;
+            System.out.print("ID: " + inicio.getId() + "<->");
+            NodoDC auxiliar = inicio.getSiguiente();
             while(auxiliar.getSiguiente() != inicio){
-                System.out.println( "\nID: " + auxiliar.getId()
-                                +   "\nNombre: " +  auxiliar.getNombre()
-                                +   "\nApellido: " + auxiliar.getApellido()
+                System.out.print( "ID: " + auxiliar.getId()
                                 +   "<->");
                 auxiliar = auxiliar.getSiguiente();
             }
-            System.out.println( "\nID: " + auxiliar.getId()
-                        +   "\nNombre: " +  auxiliar.getNombre()
-                        +   "\nApellido: " + auxiliar.getApellido()
-                        +   "<->");
+            System.out.print( "ID: " + auxiliar.getId()
+                        +   "\n");
         }
     }
     
-    public void graficar() throws IOException{
+    public void graficar() throws IOException, InterruptedException{
         System.out.println("Se muestra la grafica de los elementos en la lista:");
         String nombre = "lista_doble_circular";
         String dot_grafo_lista_doble_ciruclar = "";
-        dot_grafo_lista_doble_ciruclar 	=  "digraph lista_doble_circular"
-        + 	"\n{"
+        dot_grafo_lista_doble_ciruclar 	=  
+        "digraph lista_doble_circular"
+        +   "\n{"
+            +   "\n\tgraph[color = \"indigo:hotpink2\", fontcolor = \"white\", fontname = serif, style = filled, label = \"Lista doble circular de imagenes\"];"
             + 	"\n\tnode[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];"
             + 	"\n\tedge[color = \"blue:white:grey\"];"
             + 	"\n"
-            + 	"\n\tsubgraph cluster_lista_circular"
-            + 	"\n\t{"
+//            + 	"\n\tsubgraph cluster_lista_circular"
+//            + 	"\n\t{"
             + 	"\n"
-                +	generarDot()
-                + 	"\n\t\tcolor = \"indigo:hotpink2\""
-                + 	"\n\t\tfontcolor = white"
-                + 	"\n\t\tfontname = serif"
-                + 	"\n\t\tstyle = filled"
-                + 	"\n\t\tlabel = \"Lista doble circular\""
-            +	"\n\t}"
-        + 	"\n}";
+                +   generarDot()
+//            +	"\n\t}"
+        +   "\n}";
         Escritura.escribirArchivoDot(nombre, dot_grafo_lista_doble_ciruclar);
         Escritura.generarImagenDot(nombre);
     }
     
-    public String generarDot(){
+    public String generarDot() throws IOException{
         String dot = "";
         if(!estaVacia()){
             NodoDC auxiliar_contenido = inicio;
             while(auxiliar_contenido.getSiguiente() != inicio){
                 // -------------------  Contendio   -------------------
                 // Actual
-                dot += 	"\n\t\t\t" + auxiliar_contenido.getId()
-                    + 	"[fillcolor = black, fontcolor = white, label = "
-                    +   "<ID: " + auxiliar_contenido.getId()
-                    + 	" <BR /> "
-                    + 	"<FONT POINT-SIZE = \"9\"> "
-                    +   "Nombre: " + auxiliar_contenido.getNombre()
-                    + 	" <BR /> "
-                    +   "Apellido: " + auxiliar_contenido.getApellido()
-                    +   "</FONT>>]";
-                
+                dot += 	
+                "\n\t\t" + auxiliar_contenido.getId()
+                +   "[fillcolor = black, fontcolor = white, label = <"
+                +   "<FONT POINT-SIZE = \"9\"> "
+                +   "ID imagen: " + auxiliar_contenido.getId()
+                +   "</FONT>"
+                +   ">"
+                +   "]";
+                // Lista interna de capas, de la imagen
+                if(auxiliar_contenido.getCapas() != null){
+                    // Obteniendo el subgrafo
+                    dot += "\n" + auxiliar_contenido.getCapas().
+                    graficar("_imagen_" + auxiliar_contenido.getId() + "_", 
+                    "Capas de la imagen " + auxiliar_contenido.getId());
+                    // Creando enlace
+                    dot += "\n\t\t" + auxiliar_contenido.getId() + "->"
+                    + "_imagen_" + auxiliar_contenido.getId() + "_"
+                    + auxiliar_contenido.getCapas().getInicio().getId() + "\n\n";
+                }
                 auxiliar_contenido = auxiliar_contenido.getSiguiente();
             }
-            dot += 	"\n\t\t\t" + auxiliar_contenido.getId()
-                    + 	"[fillcolor = black, fontcolor = white, label = "
-                    +   "<ID: " + auxiliar_contenido.getId()
-                    + 	" <BR /> "
-                    + 	"<FONT POINT-SIZE = \"9\"> "
-                    +   "Nombre: " + auxiliar_contenido.getNombre()
-                    + 	" <BR /> "
-                    +   "Apellido: " + auxiliar_contenido.getApellido()
-                    +   "</FONT>>]";
+            dot += 	
+            "\n\t\t" + auxiliar_contenido.getId()
+            + 	"[fillcolor = black, fontcolor = white, label = <"
+            + 	"<FONT POINT-SIZE = \"9\"> "
+            +   "ID imagen: " + auxiliar_contenido.getId()
+            +   "</FONT>"
+            +   ">"
+            +   "]"
+            +   "\n";
             
-            dot += "\n";
-            dot += "\n\t\t{ rank = same";
+            // Lista interna de capas, de la imagen
+            if(auxiliar_contenido.getCapas() != null){
+                // Obteniendo el subgrafo
+                dot +=  "\n" + auxiliar_contenido.getCapas().
+                graficar("_imagen_" + auxiliar_contenido.getId() + "_", 
+                "Capas de la imagen " + auxiliar_contenido.getId());
+                // Creando enlace
+                dot += "\n\t\t" + auxiliar_contenido.getId() + "->"
+                + "_imagen_" + auxiliar_contenido.getId() + "_"
+                + auxiliar_contenido.getCapas().getInicio().getId() + "\n\n";
+            }
+            
+            dot += "\n\t\t{ rank = same ";
             NodoDC auxiliar_ranks = inicio;
             while(auxiliar_ranks.getSiguiente() != inicio) {
                 // -------------------  Enlaces   	-------------------
-            	dot += "\t\t" + auxiliar_ranks.getId() + " " 
+            	dot += "\t\t" + auxiliar_ranks.getId() + ", " 
                     + 	auxiliar_ranks.getSiguiente().getId();
             	auxiliar_ranks = auxiliar_ranks.getSiguiente();
             }
-            dot += 	" }"
-                + 	"\n";
+            dot +=  " }"
+                +   "\n";
             NodoDC auxiliar_enlaces = inicio;
             while(auxiliar_enlaces.getSiguiente() != inicio) {
                 // -------------------  Enlaces   	-------------------
@@ -229,10 +311,10 @@ public class ListaDC {
                     + auxiliar_enlaces_anteriores.getId();                
             	auxiliar_enlaces_anteriores = auxiliar_enlaces_anteriores.getSiguiente();
             }
-            
+            dot +=  "\n";
             // -------------------  Enlaces al final  	-------------------
-            dot += "\n\t\t" + inicio.getId() + "->" + inicio.getAnterior().getId();
-            dot += "\n\t\t" + fin.getId() + "->" + fin.getSiguiente().getId();
+//            dot += "\n\t\t" + inicio.getId() + "->" + inicio.getAnterior().getId();
+//            dot += "\n\t\t" + fin.getId() + "->" + fin.getSiguiente().getId();
         }
         return dot;
     }

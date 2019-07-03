@@ -5,24 +5,21 @@
  */
 package estructuras.listas.dobles.circular;
 
-import estructuras.listas.simples.ListaSimple;
+import estructuras.arboles.avl.subestructura.lista.simple.ListaSimpleImagenes;
+import estructuras.listas.dobles.circular.subestructura.lista.simple.ListaSimpleCapas;
 
 /**
  *
  * @author g
  */
 public class NodoDC {
-    private int id;
-    private String nombre;
-    private String apellido;
+    private int id; // ID de la imagen
     private NodoDC siguiente;
     private NodoDC anterior;
-    private ListaSimple capas;
+    private ListaSimpleCapas capas;
 
-    public NodoDC(int id, String nombre, String apellido, ListaSimple capas) {
+    public NodoDC(int id, ListaSimpleCapas capas) {
         this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
         this.capas = capas;
         this.siguiente = this.anterior = null;
     }    
@@ -33,22 +30,6 @@ public class NodoDC {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public NodoDC getSiguiente() {
@@ -67,11 +48,11 @@ public class NodoDC {
         this.anterior = anterior;
     }
 
-    public ListaSimple getCapas() {
+    public ListaSimpleCapas getCapas() {
         return capas;
     }
 
-    public void setCapas(ListaSimple capas) {
+    public void setCapas(ListaSimpleCapas capas) {
         this.capas = capas;
     }
 

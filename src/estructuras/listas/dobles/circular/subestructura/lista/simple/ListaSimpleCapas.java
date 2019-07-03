@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package estructuras.listas.simples;
+package estructuras.listas.dobles.circular.subestructura.lista.simple;
 
+import estructuras.arboles.avl.subestructura.lista.simple.*;
 import archivos.Escritura;
 import java.io.IOException;
 
@@ -12,13 +13,17 @@ import java.io.IOException;
  *
  * @author g
  */
-public class ListaSimple {
-    protected NodoSimple inicio;
+public class ListaSimpleCapas {
+    protected NodoSimpleCapas inicio;
     protected int tamano;
 
-    public ListaSimple() {
+    public ListaSimpleCapas() {
         inicio = null;
         tamano = 0;
+    }
+
+    public NodoSimpleCapas getInicio() {
+        return inicio;
     }
     
     public boolean esVacia(){
@@ -29,14 +34,14 @@ public class ListaSimple {
         return this.tamano;
     }
     
-    public void agregarAlFinal(int dato){
-        NodoSimple nuevo = new NodoSimple(dato);
+    public void agregarAlFinal(NodoSimpleCapas nuevo){
+//        NodoSimpleCapas nuevo = new NodoSimpleCapas(dato);
         if(esVacia()){
             // Lista vacia, por lo que el inicio sera igual al nodo nuevo.
             inicio = nuevo;
         }else{
             // Se posiciona al inicio el nodo auxiliar.
-            NodoSimple auxiliar = inicio;
+            NodoSimpleCapas auxiliar = inicio;
             while(auxiliar.getSiguiente() != null){
                 auxiliar = auxiliar.getSiguiente();
             }
@@ -46,34 +51,32 @@ public class ListaSimple {
         tamano++;
     }
     
-    public String graficar(String id_cluster, String titulo) throws IOException{
+    public String graficar(String id, String titulo) throws IOException{
         String dot_grafo_lista_ordenada =
-             	"\n\tsubgraph cluster_lista_simple_" + id_cluster
-            + 	"\n\t{"
-            + 	"\n\tnode[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];"
-            + 	"\n\tedge[color = \"purple:grey\"];"
-            + 	"\n"
-                +   generarDot()
-                +   "\n\t\tcolor = \"indigo:hotpink2\""
-                +   "\n\t\tfontcolor = white"
-                +   "\n\t\tfontname = serif"
-                +   "\n\t\tstyle = filled"
-                +   "\n\t\tlabel = \"Lista" + titulo + " \""
-            +	"\n\t}"
-        +   "\n}";
+        "\n\t\tsubgraph cluster_lista_simple" + id
+        +   "\n\t\t{"
+        +   "\n\t\t\tgraph[color = \"darkturquoise:aliceblue\", fontcolor = \"black\", style = filled, fontsize = 7, label = \"" + titulo + "\"];"
+        +   "\n\t\t\tnode[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];"
+        +   "\n\t\t\tedge[color = \"purple:grey\"];"
+        +   "\n"
+            +   generarDot(id)
+        +   "\n\t\t}"
+        +   "\n";
         return dot_grafo_lista_ordenada;
     }
     
-    public String generarDot(){
+    public String generarDot(String id){
         String dot = "";
         if(!esVacia()){
-            NodoSimple auxiliar_contenido = inicio;
+            NodoSimpleCapas auxiliar_contenido = inicio;
             while(auxiliar_contenido != null){
                 // -------------------  Contendio   -------------------
                 // Actual
-                dot += 	"\n\t\t\t" + auxiliar_contenido.getDato()
-                    + 	"[fillcolor = black, fontcolor = white, label = "
-                    +   "<ID: " + auxiliar_contenido.getDato()
+                dot += 	"\n\t\t\t" + id + auxiliar_contenido.getId()
+                    + 	"[fillcolor = black, fontcolor = white, label = <"
+                    +   "<FONT POINT-SIZE = \"9\">"
+                    +   " ID capa: " + auxiliar_contenido.getId()
+                    +   " </FONT>"
                     +   ">"
                     +   "]";
                 
@@ -81,11 +84,11 @@ public class ListaSimple {
             }
             dot += "\n";
             
-            NodoSimple auxiliar_enlaces = inicio;
+            NodoSimpleCapas auxiliar_enlaces = inicio;
             while(auxiliar_enlaces.getSiguiente() != null) {
                 // -------------------  Enlaces   	-------------------
-            	dot += "\n\t\t" + auxiliar_enlaces.getDato()+ "->" 
-                    + 	auxiliar_enlaces.getSiguiente().getDato();
+            	dot += "\n\t\t\t" + id + auxiliar_enlaces.getId() + "->" 
+                    + id + auxiliar_enlaces.getSiguiente().getId();
             	auxiliar_enlaces = auxiliar_enlaces.getSiguiente();
             }
         }

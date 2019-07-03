@@ -5,6 +5,9 @@
  */
 package estructuras.arboles.abb;
 import archivos.Escritura;
+import estructuras.arboles.abb.subestructura.cola.ColaABB;
+import estructuras.arboles.abb.subestructura.cola.NodoColaABB;
+import estructuras.matrices.dispersa.Matriz;
 import java.io.IOException;
 
 /**
@@ -15,29 +18,44 @@ public class ABB {
     protected NodoABB raiz;
     protected boolean esIzquierdo, esRaiz;
     String abb_aux;
+    ColaABB cola_auxiliar;
+    ColaABB cola_recorrido_preorder;
+    ColaABB cola_recorrido_inorder;
+    ColaABB cola_recorrido_postorder;
     
     public ABB(){
         raiz = null;
         abb_aux = "";
+        cola_auxiliar = null;
+        cola_recorrido_preorder = null;
+        cola_recorrido_inorder = null;
+        cola_recorrido_postorder = null;
+    }
+
+    public ColaABB getCola_auxiliar() {
+        return cola_auxiliar;
+    }
+
+    public ColaABB getCola_recorrido_inorder() {
+        return cola_recorrido_inorder;
     }
     
     public boolean esVacio(){
         return raiz == null;
     }
     
-    public void insertar(int id){
-        raiz = insertar(raiz, id);
+    public void insertar(int id, Matriz capa){
+       raiz = insertar(raiz, id, capa);
     }
     
-    private NodoABB insertar(NodoABB nodo, int id){
-        if(esVacio()){
-            nodo = new NodoABB(id);
-            System.out.println("Nodo agregado a la raiz.");
+    private NodoABB insertar(NodoABB nodo, int id, Matriz capa){
+        if(nodo == null){
+            nodo = new NodoABB(id, capa);
         }else{
             if(id <= nodo.getId()){
-                nodo.setIzquierdo(insertar(nodo.getIzquierdo(), id));
+                nodo.setIzquierdo(insertar(nodo.getIzquierdo(), id, capa));
             }else{
-                nodo.setDerecho(insertar(nodo.getDerecho(), id));
+                nodo.setDerecho(insertar(nodo.getDerecho(), id, capa));
             }
         }
         return nodo;
@@ -48,6 +66,18 @@ public class ABB {
             return false;
         }else{
             return buscar(raiz, id);
+        }
+    }
+    
+    public void inorder(){
+        inorder(raiz);
+    }
+    
+    private void inorder(NodoABB nodo){
+        if(nodo != null){
+            inorder(nodo.getIzquierdo());
+            System.out.print(nodo.getId() + ", ");
+            inorder(nodo.getDerecho());
         }
     }
     
@@ -70,93 +100,152 @@ public class ABB {
         return encontrado;
     }
     
+    NodoABB nodo_encontrado;
     public NodoABB buscarNodo(int id){
-        
-        if(raiz == null){
+        return buscarNodoABB(raiz, id);
+    }
+
+    private NodoABB buscarNodoABB(NodoABB r, int id){
+        if(null == r){
             return null;
         }
-        
-        return buscarNodo(raiz, id);
+        if(r.getId() == id){
+            System.out.println("Se encontro el ID: " + id);
+            return r;
+        } else if(id < r.getId()){
+            return buscarNodoABB(r.getIzquierdo(), id);
+        }else{
+            return buscarNodoABB(r.getDerecho(), id);
+        }
     }
     
-    private NodoABB buscarNodo(NodoABB r, int id){
-        // Verificamos si el ID buscado esta en la raiz.
-        if(id == raiz.getId()){
-            esRaiz = true;
-            return raiz;
-        }
+    public ColaABB listar(){
+        cola_auxiliar = new ColaABB();
+        listar(raiz);
+        return cola_auxiliar;
+    }
+    
+    public ColaABB r_preorder(){
+        cola_recorrido_preorder = new ColaABB();
+        r_preorder(raiz);
+        return cola_recorrido_preorder;
+    }
+    
+    public ColaABB r_inorder(){
+        cola_recorrido_inorder = new ColaABB();
+        r_inorder(raiz);
+        return cola_recorrido_inorder;
+    }
+    
+    public ColaABB r_postorder(){
+        cola_recorrido_postorder = new ColaABB();
+        r_postorder(raiz);
+        return cola_recorrido_postorder;
+    }
+    
+    public ColaABB recorrido(String recorrido){
         
-        // Si el ID es el hijo izquierdo.
-        if(r.getIzquierdo() != null && id == r.getIzquierdo().getId()){
-            esIzquierdo = true;
-            esRaiz = false;
-            return r;
-        } 
-        // Si el ID es el hijo derecho.
-        else if(r.getDerecho() != null && id == r.getDerecho().getId()){
-            esIzquierdo = false;
-            esRaiz = false;
-            return r;
-        }        
-        // Si el ID es mayor que el de "r".
-        else if(r.getDerecho() != null && id > r.getId()){
-            // Busca en el subarbol derecho de arriba.
-            return buscarNodo(r.getDerecho(), id);
+        switch(recorrido){
+            case "preorder":
+                cola_recorrido_preorder = new ColaABB();
+                r_preorder(raiz);
+                return cola_recorrido_preorder;
+//                break;
+            case "inorder":
+                cola_recorrido_inorder = new ColaABB();
+                r_inorder(raiz);
+                return cola_recorrido_inorder;
+//                break;
+            case "postorder":
+                cola_recorrido_postorder = new ColaABB();
+                r_postorder(raiz);
+                return cola_recorrido_postorder;
+//                break;
+            default:
+                break;
         }
-        // Si el ID es menor que el de "r".
-        else if(r.getIzquierdo() != null && id < r.getId()){
-            // Busca en el subarbol izquierdo de arriba.
-            return buscarNodo(r.getIzquierdo(), id);
-        }
-        
-        // Si no es ninguno de los casos anteriores, entonces no existe el ID.
         return null;
     }
     
-    public String graficar(String opcion) throws IOException{
-        String nombre = "arbolAVL";
+    private void r_preorder(NodoABB nodo){
+        if(nodo == null){
+            System.out.println("Arbol vacio.");
+        }
+        if(nodo != null){
+            cola_recorrido_preorder.encolar(new NodoColaABB(new NodoABB(nodo.getId(), nodo.getCapa())));
+            r_preorder(nodo.getIzquierdo());
+            r_preorder(nodo.getDerecho());
+        }
+    }
+    
+    private void r_inorder(NodoABB nodo){
+        if(nodo == null){
+            System.out.println("Arbol vacio.");
+        }
+        if(nodo != null){
+            r_inorder(nodo.getIzquierdo());
+            cola_recorrido_inorder.encolar(new NodoColaABB(new NodoABB(nodo.getId(), nodo.getCapa())));
+            r_inorder(nodo.getDerecho());
+        }
+    }
+    
+    private void r_postorder(NodoABB nodo){
+        if(nodo == null){
+            System.out.println("Arbol vacio.");
+        }
+        if(nodo != null){
+            r_postorder(nodo.getIzquierdo());
+            r_postorder(nodo.getDerecho());
+            cola_recorrido_postorder.encolar(new NodoColaABB(new NodoABB(nodo.getId(), nodo.getCapa())));
+        }
+    }
+    
+    
+    private void listar(NodoABB nodo){
+        if(nodo == null){
+            System.out.println("Arbol vacio.");
+        }
+        if(nodo != null){
+            listar(nodo.getIzquierdo());
+            cola_auxiliar.encolar(new NodoColaABB(new NodoABB(nodo.getId(), nodo.getCapa())));
+            listar(nodo.getDerecho());
+        }
+    }
+    
+    public String graficar(String opcion) throws IOException, InterruptedException{
+        String nombre = "arbolABB";
         
         if(opcion.equals("grafo")) {
-            String dot_grafo_arbol_avl = "";
-            dot_grafo_arbol_avl =  
-            "digraph avl"
+            String dot_grafo_abb =  
+            "digraph abb"
             +   "\n{"
+                +   "\n\tgraph[color = \"lightcyan\", fontcolor = \"steelblue4\", fontname = serif, style = filled, label = \"Capas\"];"
                 +   "\n\tnode[shape = egg, style = filled, color = navyblue, fontcolor = white, peripheries = 2];"
                 +   "\n\tedge[color = deeppink];"
                 +   "\n"
-                +   "\n\tsubgraph cluster_abb"
-                +   "\n\t{"
+//                +   "\n\tsubgraph cluster_abb"
+//                +   "\n\t{"
                 +   "\n"
                     +   generarDot(raiz)
-                    +   "\n\t\tcolor = lightcyan"
-                    +   "\n\t\tfontcolor = steelblue4"
-                    +   "\n\t\tfontname = serif"
-                    +   "\n\t\tstyle = filled"
-                    +   "\n\t\tlabel = Capas"
-                +   "\n\t}"
+//                +   "\n\t}"
             +   "\n}";
-        Escritura.escribirArchivoDot(nombre, dot_grafo_arbol_avl);
+        Escritura.escribirArchivoDot(nombre, dot_grafo_abb);
         Escritura.generarImagenDot(nombre);
         abb_aux = "";
-        dot_grafo_arbol_avl = "";
+        dot_grafo_abb = "";
         return "";
         }else if(opcion.equals("subgrafo")) {
-            String dot_subgrafo_arbol_avl = "";
-            dot_subgrafo_arbol_avl 	=	
+            String dot_subgrafo_abb = 	
             "\n\tsubgraph cluster_abb"
             +   "\n\t{"
+            +   "\n\tgraph[color = \"lightcyan\", fontcolor = \"steelblue4\", fontname = serif, style = filled, label = \"Capas\"];"
             +   "\n\tnode[shape = egg, style = filled, color = navyblue, fontcolor = white, peripheries = 2];"
             +   "\n\tedge[color = deeppink];"
             +   "\n"
             +   "\n"
                 +   generarDot(raiz)
-                +   "\n\t\tcolor = lightcyan"
-                +   "\n\t\tfontcolor = steelblue4"
-                +   "\n\t\tfontname = serif"
-                +   "\n\t\tstyle = filled"
-                +   "\n\t\tlabel = Capas"
             +   "\n\t}";
-            return dot_subgrafo_arbol_avl;
+            return dot_subgrafo_abb;
         }
         
         return "";
@@ -174,16 +263,20 @@ public class ABB {
                     // Datos del nodo
                     abb_aux += 	
                     "\t\t" + r.getId()
-                    +	"[label = "
-                    +   "< ID: " + r.getId()
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"9\">"
+                    +   " ID: " + r.getId()
+                    +   "</FONT>"
                     +   ">"
                     +   "]"
                     +	"\n";
 
                     abb_aux += 	
                     "\t\t" + r.getIzquierdo().getId()
-                    +	"[label = "
-                    +   "< ID: " + r.getIzquierdo().getId()
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"9\">"
+                    +   " ID: " + r.getIzquierdo().getId()
+                    +   "</FONT>"
                     +   ">"
                     +   "]"
                     +	"\n";
@@ -198,16 +291,20 @@ public class ABB {
                     // Datos del nodo
                     abb_aux += 	
                     "\t\t" + r.getId()
-                    +	"[label = "
-                    +   "< ID: " + r.getId()
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"9\">"
+                    +   " ID: " + r.getId()
+                    +   "</FONT>"
                     +   ">"
                     +   "]"
                     +	"\n";
 
                     abb_aux +=
                     "\t\t" + r.getDerecho().getId()
-                    +	"[label = "
-                    +   "< ID: " + r.getDerecho().getId()
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"9\">"
+                    +   " ID: " + r.getDerecho().getId()
+                    +   "</FONT>"
                     +   ">"
                     +   "]"
                     + 	"\n";
@@ -223,8 +320,10 @@ public class ABB {
             	// Datos del nodo
             	abb_aux += 	
                 "\t\t" + r.getId()
-                +   "[label = "
-                +   "< ID: " + r.getId()
+                +   "[label = <"
+                +   "<FONT POINT-SIZE = \"9\">"
+                +   " ID: " + r.getId()
+                +   "</FONT>"
                 +   ">"
                 +   "]"
                 +   "\n";
@@ -242,8 +341,10 @@ public class ABB {
                     // Datos del nodo
                     abb_aux +=
                     "\t\t" + r.getIzquierdo().getId()
-                    +	"[label = "
-                    +   "< codigo: " + r.getIzquierdo().getId()
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"9\">"
+                    +   " ID: " + r.getIzquierdo().getId()
+                    +   "</FONT>"
                     +   ">"
                     +   "]"
                     +	"\n";
@@ -258,8 +359,10 @@ public class ABB {
                     // Datos del nodo
                     abb_aux += 	
                     "\t\t" + r.getDerecho().getId()
-                    +	"[label = "
-                    +   "< ID: " + r.getDerecho().getId()
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"9\">"
+                    +   " ID: " + r.getDerecho().getId()
+                    +   "</FONT>"
                     +   ">"
                     +   "]"
                     +	"\n";

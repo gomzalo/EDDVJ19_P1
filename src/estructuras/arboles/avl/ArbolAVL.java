@@ -8,6 +8,8 @@ package estructuras.arboles.avl;
 import java.io.IOException;
 
 import archivos.Escritura;
+import estructuras.arboles.avl.subestructura.cola.ColaAVL;
+import estructuras.arboles.avl.subestructura.cola.NodoColaAVL;
 import pojos.Usuario;
 
 /**
@@ -17,10 +19,13 @@ import pojos.Usuario;
 public class ArbolAVL {
     public static String avl_aux;
     private NodoAVL raiz;
+    ColaAVL cola_auxiliar;
 
     // Constructor
     public ArbolAVL() {
         raiz = null;
+        avl_aux = "";
+        cola_auxiliar = null;
     }
     
     // Verifica si esta vacio el arbol.
@@ -279,22 +284,19 @@ public class ArbolAVL {
 	
 	// Buscar nodo recursivo
     private NodoAVL buscarNodo(NodoAVL r, String codigo){
-        NodoAVL aux = null;
-        while(r != null){
-            if(codigo.compareTo(r.getUsuario().getId()) < 0){
-                r = r.getIzquierda();
-                System.out.println("No se encontro nickname"+codigo);
-            }else if(codigo.compareTo(r.getUsuario().getId()) > 0){
-                r = r.getDerecha();
-                System.out.println("No se encontro nickname"+codigo);
-            }else{
-                aux = r;
-                System.out.println("Se encontro nickname"+aux.getUsuario().getId());
-                break;
-            }
-            r = buscarNodo(r, codigo);
+        if(r == null){
+            return null;
         }
-        return aux;
+        if(codigo.compareTo(r.getUsuario().getId()) == 0){
+            System.out.println("Se encontro usuario con ID: " + codigo);
+            return r;
+        }else if(codigo.compareTo(r.getUsuario().getId()) < 0){
+//            System.out.println("No se encontro usuario con ID: "+codigo);
+            return buscarNodo(r.getIzquierda(), codigo);
+        }else{
+            return buscarNodo(r.getDerecha(), codigo);
+//            System.out.println("Se encontro usuario con ID: "+aux.getUsuario().getId());
+        }
     }
     
 //    public Usuario verificarContraseña(String codigo, String contrasena){
@@ -322,7 +324,24 @@ public class ArbolAVL {
         }
     }
     
-    public String graficar(String opcion) throws IOException{
+    public ColaAVL listar(){
+        cola_auxiliar = new ColaAVL();
+        listar(raiz);
+        return cola_auxiliar;
+    }
+    
+    private void listar(NodoAVL nodo){
+        if(nodo == null){
+            System.out.println("Arbol vacio.");
+        }
+        if(nodo != null){
+            listar(nodo.getIzquierda());
+            cola_auxiliar.encolar(new NodoColaAVL(nodo.getUsuario()));
+            listar(nodo.getDerecha());
+        }
+    }
+    
+    public String graficar(String opcion) throws IOException, InterruptedException{
         String nombre = "arbolAVL";
         
         if(opcion.equals("grafo")) {
@@ -330,19 +349,15 @@ public class ArbolAVL {
             dot_grafo_arbol_avl =  
             "digraph avl"
             +   "\n{"
+                +   "\n\tgraph[color = \"lightcyan\", fontcolor = \"steelblue4\", fontname = serif, style = filled, label = \"Usuarios\"];"
                 +   "\n\tnode[shape = egg, style = filled, color = navyblue, fontcolor = white, peripheries = 2];"
                 +   "\n\tedge[color = deeppink];"
                 +   "\n"
-                +   "\n\tsubgraph cluster_avl"
-                +   "\n\t{"
+//                +   "\n\tsubgraph cluster_avl"
+//                +   "\n\t{"
                 +   "\n"
                     +   generarDot(raiz)
-                    +   "\n\t\tcolor = lightcyan"
-                    +   "\n\t\tfontcolor = steelblue4"
-                    +   "\n\t\tfontname = serif"
-                    +   "\n\t\tstyle = filled"
-                    +   "\n\t\tlabel = Usuarios"
-                +   "\n\t}"
+//                +   "\n\t}"
             +   "\n}";
             Escritura.escribirArchivoDot(nombre, dot_grafo_arbol_avl);
             Escritura.generarImagenDot(nombre);
@@ -354,16 +369,12 @@ public class ArbolAVL {
             dot_subgrafo_arbol_avl =
             "\n\tsubgraph cluster_avl"
             + 	"\n\t{"
+            +   "\n\tgraph[color = \"lightcyan\", fontcolor = \"steelblue4\", fontname = serif, style = filled, label = \"Usuarios\"];"
             + 	"\n\tnode[shape = egg, style = filled, color = navyblue, fontcolor = white, peripheries = 2];"
             +   "\n\tedge[color = deeppink];"
             + 	"\n"
             + 	"\n"
                 +   generarDot(raiz)
-                +   "\n\t\tcolor = lightcyan"
-                +   "\n\t\tfontcolor = steelblue4"
-                +   "\n\t\tfontname = serif"
-                +   "\n\t\tstyle = filled"
-                +   "\n\t\tlabel = Usuarios"
             + 	"\n\t}";
             return dot_subgrafo_arbol_avl;
         }
@@ -382,33 +393,52 @@ public class ArbolAVL {
                     // Datos del nodo
                     avl_aux += 	
                     "\t\t" + r.getUsuario().getId()
-                    +	"[label = < ID: " + r.getUsuario().getId();
-//                    +   " <BR /> "
-//                    +	"<FONT POINT-SIZE = \"10\"> nombre: " + r.getUsuario().getNombre()
-//                    +	" <BR /> "
-//                    +	"contrasena: " + r.getUsuario().getContrasena() 
-//                    +   " </FONT>"
-                    if(r.getUsuario().getImagenes() != null){
-                        avl_aux += r.getUsuario().getImagenes().
-                            graficar("_usuario_" + r.getUsuario().getId(), "Imagenes de usuario " + r.getUsuario().getId());
-                    }
-                    avl_aux +=   ">"
-                    +   "]"
-                    +	"\n";
-
-                    avl_aux += 	
-                    "\t\t" + r.getIzquierda().getUsuario().getId()
-                    +	"[label = "
-                    +   "< ID: " + r.getIzquierda().getUsuario().getId()
-//                    +	" <BR /> "
-//                    +	"<FONT POINT-SIZE = \"10\"> nombre: " + r.getIzquierda().getUsuario().getNombre()
-//                    +	" <BR /> "
-//                    +	"contrasena: " + r.getIzquierda().getUsuario().getContrasena()
-//                    +   " </FONT>"
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"11\">"
+                    +   " ID: " + r.getUsuario().getId()
+                    +   " </FONT>"
                     +   ">"
                     +   "]"
                     +	"\n";
-
+                        // Lista de imagenes, del usuario
+//                        if(!r.getUsuario().getImagenes().esVacia() || r.getUsuario().getImagenes().getTamano() == 0){
+                        if(r.getUsuario().getImagenes() != null){
+                            // Obteniendo subgrafo
+                            avl_aux += r.getUsuario().getImagenes().
+                            graficar("_usuario_" + r.getUsuario().getId(),
+                            "Imagenes del usuario " + r.getUsuario().getId());
+                            // Creando enlace
+                            avl_aux += r.getUsuario().getId() + "->"
+                            + "_usuario_" + r.getUsuario().getId() 
+                            + r.getUsuario().getImagenes().getInicio().getId();
+                        }else{
+                            System.out.println("Lista vacia");
+                        }
+                        
+                    // Datos del nodo izquierdo
+                    avl_aux += 	
+                    "\t\t" + r.getIzquierda().getUsuario().getId()
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"11\">"
+                    +   " ID: " + r.getIzquierda().getUsuario().getId()
+                    +   " </FONT>"
+                    +   ">"
+                    +   "]"
+                    +	"\n";
+                        // Lista de imagenes, del usuario (izquierda)
+//                        if(!r.getIzquierda().getUsuario().getImagenes().esVacia() || r.getIzquierda().getUsuario().getImagenes().getTamano() == 0){
+                        if(r.getIzquierda().getUsuario().getImagenes() != null){
+                            // Obteniendo subgrafo (izquierda)
+                            avl_aux += r.getIzquierda().getUsuario().getImagenes().
+                            graficar("_usuario_" + r.getIzquierda().getUsuario().getId(), 
+                            "Imagenes del usuario " + r.getIzquierda().getUsuario().getId());
+                            // Creando enlace (izquierda)
+                            avl_aux += "\t\t" + r.getIzquierda().getUsuario().getId() + "->"
+                            + "_usuario_" + r.getIzquierda().getUsuario().getId() 
+                            + r.getIzquierda().getUsuario().getImagenes().getInicio().getId() + "\n";
+                        }else{
+                            System.out.println("Lista vacia");
+                        }
                     // Enlaces a los nodos
                     avl_aux += 	
                     "\t\t" + r.getUsuario().getId() + "->" + r.getIzquierda().getUsuario().getId()
@@ -419,29 +449,49 @@ public class ArbolAVL {
                     // Datos del nodo
                     avl_aux += 	
                     "\t\t" + r.getUsuario().getId()
-                    +	"[label = "
-                    +   "< ID: " + r.getUsuario().getId()
-//                    +	" <BR /> "
-//                    +	"<FONT POINT-SIZE = \"10\"> nombre: " + r.getUsuario().getNombre()
-//                    +	" <BR /> "
-//                    +	"contrasena: " + r.getUsuario().getContrasena()
-//                    +   " </FONT>"
-                    +   ">"
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"11\">"
+                    +   " ID: " + r.getUsuario().getId()
+                    +   " </FONT>"
+                    +    ">"
                     +   "]"
                     +	"\n";
+                        // Lista de imagenes, del usuario
+//                        if(!r.getUsuario().getImagenes().esVacia()){
+                        if(r.getUsuario().getImagenes() != null){
+                            // Obteniendo subgrafo
+                            avl_aux += r.getUsuario().getImagenes().
+                            graficar("_usuario_" + r.getUsuario().getId(), 
+                            "Imagenes del usuario " + r.getUsuario().getId());
+                            // Creando enlace
+                            avl_aux += "\t\t" + r.getUsuario().getId() + "->"
+                            + "_usuario_" + r.getUsuario().getId() 
+                            + r.getUsuario().getImagenes().getInicio().getId() + "\n";
+                        }
 
                     avl_aux +=
                     "\t\t" + r.getDerecha().getUsuario().getId()
-                    +	"[label = "
-                    +   "< ID: " + r.getDerecha().getUsuario().getId()
-//                    +	" <BR /> "
-//                    +	"<FONT POINT-SIZE = \"10\"> nombre: " + r.getDerecha().getUsuario().getNombre()
-//                    +	" <BR /> "
-//                    +	"contrasena: " + r.getDerecha().getUsuario().getContrasena()
-//                    +   " </FONT>"
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"11\">"
+                    +   " ID: " + r.getDerecha().getUsuario().getId()
+                    +   " </FONT>"
                     +   ">"
                     +   "]"
                     + 	"\n";
+                        // Lista de imagenes, del usuario (derecha)
+//                        if(!r.getDerecha().getUsuario().getImagenes().esVacia() || r.getDerecha().getUsuario().getImagenes().getTamano() == 0){
+                        if(r.getDerecha().getUsuario().getImagenes() != null){
+                            // Obteniendo subgrafo (derecha)
+                            avl_aux += r.getDerecha().getUsuario().getImagenes().
+                            graficar("_usuario_" + r.getDerecha().getUsuario().getId(), 
+                            "Imagenes del usuario " + r.getDerecha().getUsuario().getId());
+                            // Creando enlace (derecha)
+                            avl_aux += "\t\t" + r.getDerecha().getUsuario().getId() + "->"
+                            + "_usuario_" + r.getDerecha().getUsuario().getId() 
+                            + r.getDerecha().getUsuario().getImagenes().getInicio().getId() + "\n";
+                        }else{
+                            System.out.println("Lista vacia");
+                        }
 
                     // Enlaces a los nodos
                     avl_aux += 	
@@ -454,16 +504,27 @@ public class ArbolAVL {
             	// Datos del nodo
             	avl_aux += 	
                 "\t\t" + r.getUsuario().getId()
-                +   "[label = "
-                +   "< ID: " + r.getUsuario().getId()
-//                +   " <BR /> "
-//                +   "<FONT POINT-SIZE=\"10\"> nombre: " + r.getUsuario().getNombre()
-//                +   " <BR /> "
-//                +   "contrasena: " + r.getUsuario().getContrasena()
-//                +   " </FONT>"
+                +   "[label = <"
+                +   "<FONT POINT-SIZE = \"11\">"
+                +   " ID: " + r.getUsuario().getId()
+                +   " </FONT>"
                 +   ">"
                 +   "]"
                 +   "\n";
+                    // Lista de imagenes, del usuario
+//                    if(!r.getUsuario().getImagenes().esVacia() || r.getUsuario().getImagenes().getTamano() == 0){
+                    if(r.getUsuario().getImagenes() != null){
+                        // Obteniendo subgrafo
+                        avl_aux += r.getUsuario().getImagenes().
+                        graficar("_usuario_" + r.getUsuario().getId(), 
+                        "Imagenes del usuario " + r.getUsuario().getId());
+                        // Creando enlace
+                        avl_aux += "\t\t" + r.getUsuario().getId() + "->"
+                        + "_usuario_" + r.getUsuario().getId() 
+                        + r.getUsuario().getImagenes().getInicio().getId() + "\n";
+                    }else{
+                            System.out.println("Lista vacia");
+                        }
 
             	// Enlaces a los nodos
                 avl_aux += "\t\t" + r.getUsuario().getId();
@@ -475,19 +536,30 @@ public class ArbolAVL {
                     "->" + r.getIzquierda().getUsuario().getId() 
                     +   "\n";
                     
-                    // Datos del nodo
+                    // Datos del nodo izquierdo
                     avl_aux +=
                     "\t\t" + r.getIzquierda().getUsuario().getId()
-                    +	"[label = "
-                    +   "< ID: " + r.getIzquierda().getUsuario().getId()
-//                    +	" <BR /> "
-//                    +	"<FONT POINT-SIZE = \"10\"> nombre: " + r.getIzquierda().getUsuario().getNombre()
-//                    +	" <BR /> "
-//                    +	"contrasena: " + r.getIzquierda().getUsuario().getContrasena()
-//                    +   " </FONT>"
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"11\">"
+                    +   " ID: " + r.getIzquierda().getUsuario().getId()
+                    +   " </FONT>"
                     +   ">"
                     +   "]"
                     +	"\n";
+                        // Lista de imagenes, del usuario (izquierda)
+//                        if(!r.getIzquierda().getUsuario().getImagenes().esVacia() || r.getIzquierda().getUsuario().getImagenes().getTamano() == 0){
+                        if(r.getIzquierda().getUsuario().getImagenes() != null){
+                            // Obteniendo subgrafo (izquierda)
+                            avl_aux += r.getIzquierda().getUsuario().getImagenes().
+                            graficar("_usuario_" + r.getIzquierda().getUsuario().getId(), 
+                            "Imagenes del usuario " + r.getIzquierda().getUsuario().getId());
+                            // Creando enlace (izquierda)
+                            avl_aux += "\t\t" + r.getIzquierda().getUsuario().getId() + "->"
+                            + "_usuario_" + r.getIzquierda().getUsuario().getId() 
+                            + r.getIzquierda().getUsuario().getImagenes().getInicio().getId() + "\n";
+                        }else{
+                            System.out.println("Lista vacia");
+                        }
                 }
                 if(r.getIzquierda() == null && r.getDerecha() != null)
                 {
@@ -496,19 +568,30 @@ public class ArbolAVL {
                     "->" + r.getDerecha().getUsuario().getId()
                     + 	"\n";
 
-                    // Datos del nodo
+                    // Datos del nodo derecho
                     avl_aux += 	
                     "\t\t" + r.getDerecha().getUsuario().getId()
-                    +	"[label = "
-                    +   "< ID: " + r.getDerecha().getUsuario().getId()
-//                    +	" <BR /> "
-//                    +	"<FONT POINT-SIZE = \"10\"> nombre: " + r.getDerecha().getUsuario().getNombre()
-//                    +	" <BR /> "
-//                    +	"contrasena: " + r.getDerecha().getUsuario().getContrasena()
-//                    +   " </FONT>"
+                    +	"[label = <"
+                    +   "<FONT POINT-SIZE = \"11\">"
+                    +   " ID: " + r.getDerecha().getUsuario().getId()
+                    +   " </FONT>"
                     +   ">"
                     +   "]"
                     +	"\n";
+                        // Lista de imagenes, del usuario (derecha)
+//                        if(!r.getDerecha().getUsuario().getImagenes().esVacia() || r.getDerecha().getUsuario().getImagenes().getTamano() == 0){
+                        if(r.getDerecha().getUsuario().getImagenes() != null){
+                            // Obteniendo subgrafo (derecha)
+                            avl_aux += r.getDerecha().getUsuario().getImagenes().
+                            graficar("_usuario_" + r.getDerecha().getUsuario().getId(), 
+                            "Imagenes del usuario " + r.getDerecha().getUsuario().getId());
+                            // Creando enlace (derecha)
+                            avl_aux += "\t\t" + r.getDerecha().getUsuario().getId() + "->"
+                            + "_usuario_" + r.getDerecha().getUsuario().getId() 
+                            + r.getDerecha().getUsuario().getImagenes().getInicio().getId() + "\n";
+                        }else{
+                            System.out.println("Lista vacia");
+                        }
                 }
             }
             
