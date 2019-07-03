@@ -1,0 +1,77 @@
+digraph imagen_id_2
+{
+	graph[color = "indigo:hotpink2", fontcolor = "white", fontname = serif, style = filled, label = "Imagen 2"];
+	node[shape = tripleoctagon, style = filled, color = navyblue, fillcolor = springgreen1, fontcolor = black, peripheries = 2];
+	edge[color = "blue:white:grey"];
+
+
+		_imagen_2[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID imagen: 2</FONT>>]
+	subgraph cluster_abb
+	{
+	graph[color = "lightcyan", fontcolor = "steelblue4", fontname = serif, style = filled, label = "Capas"];
+	node[shape = egg, style = filled, color = navyblue, fontcolor = white, peripheries = 2];
+	edge[color = deeppink];
+
+		1[label = <<FONT POINT-SIZE = "9"> ID: 1</FONT>>]
+		1
+		2[label = <<FONT POINT-SIZE = "9"> ID: 2</FONT>>]
+		1[label = <<FONT POINT-SIZE = "9"> ID: 1</FONT>>]
+		2->1
+		2[label = <<FONT POINT-SIZE = "9"> ID: 2</FONT>>]
+		3[label = <<FONT POINT-SIZE = "9"> ID: 3</FONT>>]
+		2->3
+
+		3[label = <<FONT POINT-SIZE = "9"> ID: 3</FONT>>]
+		3
+		4[label = <<FONT POINT-SIZE = "9"> ID: 4</FONT>>]
+		2[label = <<FONT POINT-SIZE = "9"> ID: 2</FONT>>]
+		4->2
+		4[label = <<FONT POINT-SIZE = "9"> ID: 4</FONT>>]
+		6[label = <<FONT POINT-SIZE = "9"> ID: 6</FONT>>]
+		4->6
+
+		5[label = <<FONT POINT-SIZE = "9"> ID: 5</FONT>>]
+		5
+		6[label = <<FONT POINT-SIZE = "9"> ID: 6</FONT>>]
+		5[label = <<FONT POINT-SIZE = "9"> ID: 5</FONT>>]
+		6->5
+		6[label = <<FONT POINT-SIZE = "9"> ID: 6</FONT>>]
+		8[label = <<FONT POINT-SIZE = "9"> ID: 8</FONT>>]
+		6->8
+
+		7[label = <<FONT POINT-SIZE = "9"> ID: 7</FONT>>]
+		7
+		8[label = <<FONT POINT-SIZE = "9"> ID: 8</FONT>>]
+		7[label = <<FONT POINT-SIZE = "9"> ID: 7</FONT>>]
+		8->7
+		8[label = <<FONT POINT-SIZE = "9"> ID: 8</FONT>>]
+		9[label = <<FONT POINT-SIZE = "9"> ID: 9</FONT>>]
+		8->9
+
+		9[label = <<FONT POINT-SIZE = "9"> ID: 9</FONT>>]
+		9
+
+	}
+
+		subgraph cluster_lista_simplecapa_
+		{
+			graph[color = "darkturquoise:aliceblue", fontcolor = "black", style = filled, fontsize = 7, label = "Capas de la imagen 2"];
+			node[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];
+			edge[color = "purple:grey"];
+
+			capa_7[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID capa: 7 </FONT>>]
+			capa_8[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID capa: 8 </FONT>>]
+
+			capa_7->capa_8
+		}
+
+		_imagen_2->capa_7
+
+
+		capa_7->7
+
+
+		capa_8->8
+
+
+}

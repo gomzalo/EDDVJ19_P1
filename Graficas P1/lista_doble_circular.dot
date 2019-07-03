@@ -1,0 +1,65 @@
+digraph lista_doble_circular
+{
+	graph[color = "indigo:hotpink2", fontcolor = "white", fontname = serif, style = filled, label = "Lista doble circular de imagenes"];
+	node[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];
+	edge[color = "blue:white:grey"];
+
+
+		1[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID imagen: 1</FONT>>]
+
+		subgraph cluster_lista_simple_imagen_1_
+		{
+			graph[color = "darkturquoise:aliceblue", fontcolor = "black", style = filled, fontsize = 7, label = "Capas de la imagen 1"];
+			node[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];
+			edge[color = "purple:grey"];
+
+			_imagen_1_2[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID capa: 2 </FONT>>]
+			_imagen_1_1[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID capa: 1 </FONT>>]
+			_imagen_1_3[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID capa: 3 </FONT>>]
+
+			_imagen_1_2->_imagen_1_1
+			_imagen_1_1->_imagen_1_3
+		}
+
+		1->_imagen_1_2
+
+
+		2[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID imagen: 2</FONT>>]
+
+		subgraph cluster_lista_simple_imagen_2_
+		{
+			graph[color = "darkturquoise:aliceblue", fontcolor = "black", style = filled, fontsize = 7, label = "Capas de la imagen 2"];
+			node[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];
+			edge[color = "purple:grey"];
+
+			_imagen_2_6[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID capa: 6 </FONT>>]
+
+		}
+
+		2->_imagen_2_6
+
+
+		3[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID imagen: 3</FONT>>]
+
+
+		subgraph cluster_lista_simple_imagen_3_
+		{
+			graph[color = "darkturquoise:aliceblue", fontcolor = "black", style = filled, fontsize = 7, label = "Capas de la imagen 3"];
+			node[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];
+			edge[color = "purple:grey"];
+
+			_imagen_3_9[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID capa: 9 </FONT>>]
+
+		}
+
+		3->_imagen_3_9
+
+
+		{ rank = same 		1, 2		2, 3 }
+
+		1->2
+		2->3
+		2->1
+		3->2
+
+}

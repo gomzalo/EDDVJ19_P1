@@ -1,0 +1,1046 @@
+digraph matriz_0
+{
+	graph[color = "white", fontcolor = "steelblue4", fontname = serif, style = filled, label = "Capa 0"];
+	node[shape = square, style = filled, color = black, fillcolor = "orange", fontcolor = black, peripheries = 2];
+	edge[color = black];
+
+
+		//Nodo pivote
+		XY0[group = XY0, label = <<FONT POINT-SIZE = "9">0</FONT>>]
+		//rank min de cabeceras
+		{
+		 rank = min XY0
+		//Nodos cabeceras
+		X00[group = X00, label = <<FONT POINT-SIZE = "9">0</FONT>>]
+		X10[group = X10, label = <<FONT POINT-SIZE = "9">1</FONT>>]
+		X20[group = X20, label = <<FONT POINT-SIZE = "9">2</FONT>>]
+		X30[group = X30, label = <<FONT POINT-SIZE = "9">3</FONT>>]
+		X40[group = X40, label = <<FONT POINT-SIZE = "9">4</FONT>>]
+		X50[group = X50, label = <<FONT POINT-SIZE = "9">5</FONT>>]
+		X60[group = X60, label = <<FONT POINT-SIZE = "9">6</FONT>>]
+		X70[group = X70, label = <<FONT POINT-SIZE = "9">7</FONT>>]
+		X80[group = X80, label = <<FONT POINT-SIZE = "9">8</FONT>>]
+		X90[group = X90, label = <<FONT POINT-SIZE = "9">9</FONT>>]
+		X100[group = X100, label = <<FONT POINT-SIZE = "9">10</FONT>>]
+		X110[group = X110, label = <<FONT POINT-SIZE = "9">11</FONT>>]
+		X120[group = X120, label = <<FONT POINT-SIZE = "9">12</FONT>>]
+		X130[group = X130, label = <<FONT POINT-SIZE = "9">13</FONT>>]
+		X140[group = X140, label = <<FONT POINT-SIZE = "9">14</FONT>>]
+		X150[group = X150, label = <<FONT POINT-SIZE = "9">15</FONT>>]
+		X160[group = X160, label = <<FONT POINT-SIZE = "9">16</FONT>>]
+		X170[group = X170, label = <<FONT POINT-SIZE = "9">17</FONT>>]
+		X180[group = X180, label = <<FONT POINT-SIZE = "9">18</FONT>>]
+		X190[group = X190, label = <<FONT POINT-SIZE = "9">19</FONT>>]
+		X200[group = X200, label = <<FONT POINT-SIZE = "9">20</FONT>>]
+		X210[group = X210, label = <<FONT POINT-SIZE = "9">21</FONT>>]
+		X220[group = X220, label = <<FONT POINT-SIZE = "9">22</FONT>>]
+		X230[group = X230, label = <<FONT POINT-SIZE = "9">23</FONT>>]
+		}
+
+		//Nodos laterales
+		Y00[group = XY0, label = <<FONT POINT-SIZE = "9">0</FONT>>]
+		Y10[group = XY0, label = <<FONT POINT-SIZE = "9">1</FONT>>]
+		Y20[group = XY0, label = <<FONT POINT-SIZE = "9">2</FONT>>]
+		Y30[group = XY0, label = <<FONT POINT-SIZE = "9">3</FONT>>]
+		Y40[group = XY0, label = <<FONT POINT-SIZE = "9">4</FONT>>]
+		Y50[group = XY0, label = <<FONT POINT-SIZE = "9">5</FONT>>]
+		Y60[group = XY0, label = <<FONT POINT-SIZE = "9">6</FONT>>]
+		Y70[group = XY0, label = <<FONT POINT-SIZE = "9">7</FONT>>]
+		Y80[group = XY0, label = <<FONT POINT-SIZE = "9">8</FONT>>]
+		Y90[group = XY0, label = <<FONT POINT-SIZE = "9">9</FONT>>]
+		Y100[group = XY0, label = <<FONT POINT-SIZE = "9">10</FONT>>]
+		Y110[group = XY0, label = <<FONT POINT-SIZE = "9">11</FONT>>]
+		Y120[group = XY0, label = <<FONT POINT-SIZE = "9">12</FONT>>]
+		Y130[group = XY0, label = <<FONT POINT-SIZE = "9">13</FONT>>]
+		Y140[group = XY0, label = <<FONT POINT-SIZE = "9">14</FONT>>]
+		Y150[group = XY0, label = <<FONT POINT-SIZE = "9">15</FONT>>]
+		Y160[group = XY0, label = <<FONT POINT-SIZE = "9">16</FONT>>]
+		Y170[group = XY0, label = <<FONT POINT-SIZE = "9">17</FONT>>]
+		Y180[group = XY0, label = <<FONT POINT-SIZE = "9">18</FONT>>]
+		Y190[group = XY0, label = <<FONT POINT-SIZE = "9">19</FONT>>]
+		Y200[group = XY0, label = <<FONT POINT-SIZE = "9">20</FONT>>]
+		Y210[group = XY0, label = <<FONT POINT-SIZE = "9">21</FONT>>]
+		Y220[group = XY0, label = <<FONT POINT-SIZE = "9">22</FONT>>]
+		Y230[group = XY0, label = <<FONT POINT-SIZE = "9">23</FONT>>]
+		Y240[group = XY0, label = <<FONT POINT-SIZE = "9">24</FONT>>]
+		Y250[group = XY0, label = <<FONT POINT-SIZE = "9">25</FONT>>]
+		Y260[group = XY0, label = <<FONT POINT-SIZE = "9">26</FONT>>]
+		Y270[group = XY0, label = <<FONT POINT-SIZE = "9">27</FONT>>]
+		Y280[group = XY0, label = <<FONT POINT-SIZE = "9">28</FONT>>]
+		Y290[group = XY0, label = <<FONT POINT-SIZE = "9">29</FONT>>]
+		Y300[group = XY0, label = <<FONT POINT-SIZE = "9">30</FONT>>]
+		Y310[group = XY0, label = <<FONT POINT-SIZE = "9">31</FONT>>]
+		Y320[group = XY0, label = <<FONT POINT-SIZE = "9">32</FONT>>]
+		Y330[group = XY0, label = <<FONT POINT-SIZE = "9">33</FONT>>]
+		Y340[group = XY0, label = <<FONT POINT-SIZE = "9">34</FONT>>]
+		Y350[group = XY0, label = <<FONT POINT-SIZE = "9">35</FONT>>]
+		Y360[group = XY0, label = <<FONT POINT-SIZE = "9">36</FONT>>]
+		Y370[group = XY0, label = <<FONT POINT-SIZE = "9">37</FONT>>]
+		Y380[group = XY0, label = <<FONT POINT-SIZE = "9">38</FONT>>]
+		Y390[group = XY0, label = <<FONT POINT-SIZE = "9">39</FONT>>]
+		Y400[group = XY0, label = <<FONT POINT-SIZE = "9">40</FONT>>]
+		Y410[group = XY0, label = <<FONT POINT-SIZE = "9">41</FONT>>]
+		//Enlaces cabeceras
+		XY0->X00
+		X00->X10
+		X10->X20
+		X20->X30
+		X30->X40
+		X40->X50
+		X50->X60
+		X60->X70
+		X70->X80
+		X80->X90
+		X90->X100
+		X100->X110
+		X110->X120
+		X120->X130
+		X130->X140
+		X140->X150
+		X150->X160
+		X160->X170
+		X170->X180
+		X180->X190
+		X190->X200
+		X200->X210
+		X210->X220
+		X220->X230
+		//Enlaces laterales
+		XY0->Y00
+		Y00->Y10
+		Y10->Y20
+		Y20->Y30
+		Y30->Y40
+		Y40->Y50
+		Y50->Y60
+		Y60->Y70
+		Y70->Y80
+		Y80->Y90
+		Y90->Y100
+		Y100->Y110
+		Y110->Y120
+		Y120->Y130
+		Y130->Y140
+		Y140->Y150
+		Y150->Y160
+		Y160->Y170
+		Y170->Y180
+		Y180->Y190
+		Y190->Y200
+		Y200->Y210
+		Y210->Y220
+		Y220->Y230
+		Y230->Y240
+		Y240->Y250
+		Y250->Y260
+		Y260->Y270
+		Y270->Y280
+		Y280->Y290
+		Y290->Y300
+		Y300->Y310
+		Y310->Y320
+		Y320->Y330
+		Y330->Y340
+		Y340->Y350
+		Y350->Y360
+		Y360->Y370
+		Y370->Y380
+		Y380->Y390
+		Y390->Y400
+		Y400->Y410
+		//Nodos internos
+		X0Y120[group = X00, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X0Y130[group = X00, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X1Y110[group = X10, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X1Y140[group = X10, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X1Y150[group = X10, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X1Y160[group = X10, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X1Y170[group = X10, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X2Y100[group = X20, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X2Y140[group = X20, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X2Y180[group = X20, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X2Y280[group = X20, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X2Y290[group = X20, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X2Y300[group = X20, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X2Y310[group = X20, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X3Y80[group = X30, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X3Y90[group = X30, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X3Y100[group = X30, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X3Y130[group = X30, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X3Y190[group = X30, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X3Y270[group = X30, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X3Y320[group = X30, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y70[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y130[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y150[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y160[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y190[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y250[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y260[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y290[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y300[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y330[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y360[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y370[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y380[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y390[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X4Y400[group = X40, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y50[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y60[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y130[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y170[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y190[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y230[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y240[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y250[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y330[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y340[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y350[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y400[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X5Y410[group = X50, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y40[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y110[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y120[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y140[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y150[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y190[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y220[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y250[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y290[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y300[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y330[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y350[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X6Y410[group = X60, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X7Y30[group = X70, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X7Y100[group = X70, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X7Y120[group = X70, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X7Y160[group = X70, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X7Y200[group = X70, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X7Y210[group = X70, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X7Y250[group = X70, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X7Y330[group = X70, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X7Y350[group = X70, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X7Y410[group = X70, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y20[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y90[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y120[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y130[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y160[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y200[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y210[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y260[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y300[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y330[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y350[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X8Y410[group = X80, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y10[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y80[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y110[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y140[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y150[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y160[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y200[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y220[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y260[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y270[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y300[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y310[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y320[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y330[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y350[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X9Y410[group = X90, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y10[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y70[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y100[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y200[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y210[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y230[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y240[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y250[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y280[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y290[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y300[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y330[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X10Y410[group = X100, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X11Y00[group = X110, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X11Y70[group = X110, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X11Y100[group = X110, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X11Y210[group = X110, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X11Y220[group = X110, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X11Y330[group = X110, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X11Y410[group = X110, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y00[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y40[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y50[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y60[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y100[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y160[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y170[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y180[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y210[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y230[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y260[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y270[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y340[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y350[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X12Y410[group = X120, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y00[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y30[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y60[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y90[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y110[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y120[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y130[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y160[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y190[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y210[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y240[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y250[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y280[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y340[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y350[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X13Y400[group = X130, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y00[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y20[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y60[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y90[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y160[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y200[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y220[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y250[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y280[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y340[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y360[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y370[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y380[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y390[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X14Y400[group = X140, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y00[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y20[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y60[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y90[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y160[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y200[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y210[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y230[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y250[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y260[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y270[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y340[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X15Y400[group = X150, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y00[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y20[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y60[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y90[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y130[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y160[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y200[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y210[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y220[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y240[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y340[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X16Y400[group = X160, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y10[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y30[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y40[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y60[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y90[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y120[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y170[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y200[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y230[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y330[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y340[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X17Y400[group = X170, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X18Y20[group = X180, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X18Y50[group = X180, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X18Y90[group = X180, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X18Y110[group = X180, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X18Y120[group = X180, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X18Y180[group = X180, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X18Y200[group = X180, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X18Y240[group = X180, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X18Y320[group = X180, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X18Y340[group = X180, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X18Y390[group = X180, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y30[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y40[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y50[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y80[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y90[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y120[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y180[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y190[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y250[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y280[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y290[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y300[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y310[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y350[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y360[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y370[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X19Y380[group = X190, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X20Y50[group = X200, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X20Y80[group = X200, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X20Y90[group = X200, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X20Y100[group = X200, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X20Y110[group = X200, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X20Y120[group = X200, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X20Y180[group = X200, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X20Y260[group = X200, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X20Y270[group = X200, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X20Y300[group = X200, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X20Y320[group = X200, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X21Y60[group = X210, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X21Y80[group = X210, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X21Y90[group = X210, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X21Y120[group = X210, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X21Y170[group = X210, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X21Y280[group = X210, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X21Y290[group = X210, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X21Y300[group = X210, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X21Y310[group = X210, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X22Y60[group = X220, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X22Y80[group = X220, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X22Y90[group = X220, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X22Y130[group = X220, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X22Y160[group = X220, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X23Y70[group = X230, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X23Y80[group = X230, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X23Y140[group = X230, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+		X23Y150[group = X230, label = <<FONT POINT-SIZE = "7"> #000000</FONT>>]
+
+		//Enlaces de cabeceras y nodos internos
+		X00->X0Y120
+		//Enlaces internos internos hacia abajo
+		X0Y120->X0Y130[dir = both]
+		X10->X1Y110
+		//Enlaces internos internos hacia abajo
+		X1Y110->X1Y140[dir = both]
+		X1Y140->X1Y150[dir = both]
+		X1Y150->X1Y160[dir = both]
+		X1Y160->X1Y170[dir = both]
+		X20->X2Y100
+		//Enlaces internos internos hacia abajo
+		X2Y100->X2Y140[dir = both]
+		X2Y140->X2Y180[dir = both]
+		X2Y180->X2Y280[dir = both]
+		X2Y280->X2Y290[dir = both]
+		X2Y290->X2Y300[dir = both]
+		X2Y300->X2Y310[dir = both]
+		X30->X3Y80
+		//Enlaces internos internos hacia abajo
+		X3Y80->X3Y90[dir = both]
+		X3Y90->X3Y100[dir = both]
+		X3Y100->X3Y130[dir = both]
+		X3Y130->X3Y190[dir = both]
+		X3Y190->X3Y270[dir = both]
+		X3Y270->X3Y320[dir = both]
+		X40->X4Y70
+		//Enlaces internos internos hacia abajo
+		X4Y70->X4Y130[dir = both]
+		X4Y130->X4Y150[dir = both]
+		X4Y150->X4Y160[dir = both]
+		X4Y160->X4Y190[dir = both]
+		X4Y190->X4Y250[dir = both]
+		X4Y250->X4Y260[dir = both]
+		X4Y260->X4Y290[dir = both]
+		X4Y290->X4Y300[dir = both]
+		X4Y300->X4Y330[dir = both]
+		X4Y330->X4Y360[dir = both]
+		X4Y360->X4Y370[dir = both]
+		X4Y370->X4Y380[dir = both]
+		X4Y380->X4Y390[dir = both]
+		X4Y390->X4Y400[dir = both]
+		X50->X5Y50
+		//Enlaces internos internos hacia abajo
+		X5Y50->X5Y60[dir = both]
+		X5Y60->X5Y130[dir = both]
+		X5Y130->X5Y170[dir = both]
+		X5Y170->X5Y190[dir = both]
+		X5Y190->X5Y230[dir = both]
+		X5Y230->X5Y240[dir = both]
+		X5Y240->X5Y250[dir = both]
+		X5Y250->X5Y330[dir = both]
+		X5Y330->X5Y340[dir = both]
+		X5Y340->X5Y350[dir = both]
+		X5Y350->X5Y400[dir = both]
+		X5Y400->X5Y410[dir = both]
+		X60->X6Y40
+		//Enlaces internos internos hacia abajo
+		X6Y40->X6Y110[dir = both]
+		X6Y110->X6Y120[dir = both]
+		X6Y120->X6Y140[dir = both]
+		X6Y140->X6Y150[dir = both]
+		X6Y150->X6Y190[dir = both]
+		X6Y190->X6Y220[dir = both]
+		X6Y220->X6Y250[dir = both]
+		X6Y250->X6Y290[dir = both]
+		X6Y290->X6Y300[dir = both]
+		X6Y300->X6Y330[dir = both]
+		X6Y330->X6Y350[dir = both]
+		X6Y350->X6Y410[dir = both]
+		X70->X7Y30
+		//Enlaces internos internos hacia abajo
+		X7Y30->X7Y100[dir = both]
+		X7Y100->X7Y120[dir = both]
+		X7Y120->X7Y160[dir = both]
+		X7Y160->X7Y200[dir = both]
+		X7Y200->X7Y210[dir = both]
+		X7Y210->X7Y250[dir = both]
+		X7Y250->X7Y330[dir = both]
+		X7Y330->X7Y350[dir = both]
+		X7Y350->X7Y410[dir = both]
+		X80->X8Y20
+		//Enlaces internos internos hacia abajo
+		X8Y20->X8Y90[dir = both]
+		X8Y90->X8Y120[dir = both]
+		X8Y120->X8Y130[dir = both]
+		X8Y130->X8Y160[dir = both]
+		X8Y160->X8Y200[dir = both]
+		X8Y200->X8Y210[dir = both]
+		X8Y210->X8Y260[dir = both]
+		X8Y260->X8Y300[dir = both]
+		X8Y300->X8Y330[dir = both]
+		X8Y330->X8Y350[dir = both]
+		X8Y350->X8Y410[dir = both]
+		X90->X9Y10
+		//Enlaces internos internos hacia abajo
+		X9Y10->X9Y80[dir = both]
+		X9Y80->X9Y110[dir = both]
+		X9Y110->X9Y140[dir = both]
+		X9Y140->X9Y150[dir = both]
+		X9Y150->X9Y160[dir = both]
+		X9Y160->X9Y200[dir = both]
+		X9Y200->X9Y220[dir = both]
+		X9Y220->X9Y260[dir = both]
+		X9Y260->X9Y270[dir = both]
+		X9Y270->X9Y300[dir = both]
+		X9Y300->X9Y310[dir = both]
+		X9Y310->X9Y320[dir = both]
+		X9Y320->X9Y330[dir = both]
+		X9Y330->X9Y350[dir = both]
+		X9Y350->X9Y410[dir = both]
+		X100->X10Y10
+		//Enlaces internos internos hacia abajo
+		X10Y10->X10Y70[dir = both]
+		X10Y70->X10Y100[dir = both]
+		X10Y100->X10Y200[dir = both]
+		X10Y200->X10Y210[dir = both]
+		X10Y210->X10Y230[dir = both]
+		X10Y230->X10Y240[dir = both]
+		X10Y240->X10Y250[dir = both]
+		X10Y250->X10Y280[dir = both]
+		X10Y280->X10Y290[dir = both]
+		X10Y290->X10Y300[dir = both]
+		X10Y300->X10Y330[dir = both]
+		X10Y330->X10Y410[dir = both]
+		X110->X11Y00
+		//Enlaces internos internos hacia abajo
+		X11Y00->X11Y70[dir = both]
+		X11Y70->X11Y100[dir = both]
+		X11Y100->X11Y210[dir = both]
+		X11Y210->X11Y220[dir = both]
+		X11Y220->X11Y330[dir = both]
+		X11Y330->X11Y410[dir = both]
+		X120->X12Y00
+		//Enlaces internos internos hacia abajo
+		X12Y00->X12Y40[dir = both]
+		X12Y40->X12Y50[dir = both]
+		X12Y50->X12Y60[dir = both]
+		X12Y60->X12Y100[dir = both]
+		X12Y100->X12Y160[dir = both]
+		X12Y160->X12Y170[dir = both]
+		X12Y170->X12Y180[dir = both]
+		X12Y180->X12Y210[dir = both]
+		X12Y210->X12Y230[dir = both]
+		X12Y230->X12Y260[dir = both]
+		X12Y260->X12Y270[dir = both]
+		X12Y270->X12Y340[dir = both]
+		X12Y340->X12Y350[dir = both]
+		X12Y350->X12Y410[dir = both]
+		X130->X13Y00
+		//Enlaces internos internos hacia abajo
+		X13Y00->X13Y30[dir = both]
+		X13Y30->X13Y60[dir = both]
+		X13Y60->X13Y90[dir = both]
+		X13Y90->X13Y110[dir = both]
+		X13Y110->X13Y120[dir = both]
+		X13Y120->X13Y130[dir = both]
+		X13Y130->X13Y160[dir = both]
+		X13Y160->X13Y190[dir = both]
+		X13Y190->X13Y210[dir = both]
+		X13Y210->X13Y240[dir = both]
+		X13Y240->X13Y250[dir = both]
+		X13Y250->X13Y280[dir = both]
+		X13Y280->X13Y340[dir = both]
+		X13Y340->X13Y350[dir = both]
+		X13Y350->X13Y400[dir = both]
+		X140->X14Y00
+		//Enlaces internos internos hacia abajo
+		X14Y00->X14Y20[dir = both]
+		X14Y20->X14Y60[dir = both]
+		X14Y60->X14Y90[dir = both]
+		X14Y90->X14Y160[dir = both]
+		X14Y160->X14Y200[dir = both]
+		X14Y200->X14Y220[dir = both]
+		X14Y220->X14Y250[dir = both]
+		X14Y250->X14Y280[dir = both]
+		X14Y280->X14Y340[dir = both]
+		X14Y340->X14Y360[dir = both]
+		X14Y360->X14Y370[dir = both]
+		X14Y370->X14Y380[dir = both]
+		X14Y380->X14Y390[dir = both]
+		X14Y390->X14Y400[dir = both]
+		X150->X15Y00
+		//Enlaces internos internos hacia abajo
+		X15Y00->X15Y20[dir = both]
+		X15Y20->X15Y60[dir = both]
+		X15Y60->X15Y90[dir = both]
+		X15Y90->X15Y160[dir = both]
+		X15Y160->X15Y200[dir = both]
+		X15Y200->X15Y210[dir = both]
+		X15Y210->X15Y230[dir = both]
+		X15Y230->X15Y250[dir = both]
+		X15Y250->X15Y260[dir = both]
+		X15Y260->X15Y270[dir = both]
+		X15Y270->X15Y340[dir = both]
+		X15Y340->X15Y400[dir = both]
+		X160->X16Y00
+		//Enlaces internos internos hacia abajo
+		X16Y00->X16Y20[dir = both]
+		X16Y20->X16Y60[dir = both]
+		X16Y60->X16Y90[dir = both]
+		X16Y90->X16Y130[dir = both]
+		X16Y130->X16Y160[dir = both]
+		X16Y160->X16Y200[dir = both]
+		X16Y200->X16Y210[dir = both]
+		X16Y210->X16Y220[dir = both]
+		X16Y220->X16Y240[dir = both]
+		X16Y240->X16Y340[dir = both]
+		X16Y340->X16Y400[dir = both]
+		X170->X17Y10
+		//Enlaces internos internos hacia abajo
+		X17Y10->X17Y30[dir = both]
+		X17Y30->X17Y40[dir = both]
+		X17Y40->X17Y60[dir = both]
+		X17Y60->X17Y90[dir = both]
+		X17Y90->X17Y120[dir = both]
+		X17Y120->X17Y170[dir = both]
+		X17Y170->X17Y200[dir = both]
+		X17Y200->X17Y230[dir = both]
+		X17Y230->X17Y330[dir = both]
+		X17Y330->X17Y340[dir = both]
+		X17Y340->X17Y400[dir = both]
+		X180->X18Y20
+		//Enlaces internos internos hacia abajo
+		X18Y20->X18Y50[dir = both]
+		X18Y50->X18Y90[dir = both]
+		X18Y90->X18Y110[dir = both]
+		X18Y110->X18Y120[dir = both]
+		X18Y120->X18Y180[dir = both]
+		X18Y180->X18Y200[dir = both]
+		X18Y200->X18Y240[dir = both]
+		X18Y240->X18Y320[dir = both]
+		X18Y320->X18Y340[dir = both]
+		X18Y340->X18Y390[dir = both]
+		X190->X19Y30
+		//Enlaces internos internos hacia abajo
+		X19Y30->X19Y40[dir = both]
+		X19Y40->X19Y50[dir = both]
+		X19Y50->X19Y80[dir = both]
+		X19Y80->X19Y90[dir = both]
+		X19Y90->X19Y120[dir = both]
+		X19Y120->X19Y180[dir = both]
+		X19Y180->X19Y190[dir = both]
+		X19Y190->X19Y250[dir = both]
+		X19Y250->X19Y280[dir = both]
+		X19Y280->X19Y290[dir = both]
+		X19Y290->X19Y300[dir = both]
+		X19Y300->X19Y310[dir = both]
+		X19Y310->X19Y350[dir = both]
+		X19Y350->X19Y360[dir = both]
+		X19Y360->X19Y370[dir = both]
+		X19Y370->X19Y380[dir = both]
+		X200->X20Y50
+		//Enlaces internos internos hacia abajo
+		X20Y50->X20Y80[dir = both]
+		X20Y80->X20Y90[dir = both]
+		X20Y90->X20Y100[dir = both]
+		X20Y100->X20Y110[dir = both]
+		X20Y110->X20Y120[dir = both]
+		X20Y120->X20Y180[dir = both]
+		X20Y180->X20Y260[dir = both]
+		X20Y260->X20Y270[dir = both]
+		X20Y270->X20Y300[dir = both]
+		X20Y300->X20Y320[dir = both]
+		X210->X21Y60
+		//Enlaces internos internos hacia abajo
+		X21Y60->X21Y80[dir = both]
+		X21Y80->X21Y90[dir = both]
+		X21Y90->X21Y120[dir = both]
+		X21Y120->X21Y170[dir = both]
+		X21Y170->X21Y280[dir = both]
+		X21Y280->X21Y290[dir = both]
+		X21Y290->X21Y300[dir = both]
+		X21Y300->X21Y310[dir = both]
+		X220->X22Y60
+		//Enlaces internos internos hacia abajo
+		X22Y60->X22Y80[dir = both]
+		X22Y80->X22Y90[dir = both]
+		X22Y90->X22Y130[dir = both]
+		X22Y130->X22Y160[dir = both]
+		X230->X23Y70
+		//Enlaces internos internos hacia abajo
+		X23Y70->X23Y80[dir = both]
+		X23Y80->X23Y140[dir = both]
+		X23Y140->X23Y150[dir = both]
+
+		//Enlaces de laterales y nodos internos
+		Y00->X11Y00
+		//Enlaces internos internos hacia la derecha
+		X11Y00->X12Y00[dir = both]
+		X12Y00->X13Y00[dir = both]
+		X13Y00->X14Y00[dir = both]
+		X14Y00->X15Y00[dir = both]
+		X15Y00->X16Y00[dir = both]
+		Y10->X9Y10
+		//Enlaces internos internos hacia la derecha
+		X9Y10->X10Y10[dir = both]
+		X10Y10->X17Y10[dir = both]
+		Y20->X8Y20
+		//Enlaces internos internos hacia la derecha
+		X8Y20->X14Y20[dir = both]
+		X14Y20->X15Y20[dir = both]
+		X15Y20->X16Y20[dir = both]
+		X16Y20->X18Y20[dir = both]
+		Y30->X7Y30
+		//Enlaces internos internos hacia la derecha
+		X7Y30->X13Y30[dir = both]
+		X13Y30->X17Y30[dir = both]
+		X17Y30->X19Y30[dir = both]
+		Y40->X6Y40
+		//Enlaces internos internos hacia la derecha
+		X6Y40->X12Y40[dir = both]
+		X12Y40->X17Y40[dir = both]
+		X17Y40->X19Y40[dir = both]
+		Y50->X5Y50
+		//Enlaces internos internos hacia la derecha
+		X5Y50->X12Y50[dir = both]
+		X12Y50->X18Y50[dir = both]
+		X18Y50->X19Y50[dir = both]
+		X19Y50->X20Y50[dir = both]
+		Y60->X5Y60
+		//Enlaces internos internos hacia la derecha
+		X5Y60->X12Y60[dir = both]
+		X12Y60->X13Y60[dir = both]
+		X13Y60->X14Y60[dir = both]
+		X14Y60->X15Y60[dir = both]
+		X15Y60->X16Y60[dir = both]
+		X16Y60->X17Y60[dir = both]
+		X17Y60->X21Y60[dir = both]
+		X21Y60->X22Y60[dir = both]
+		Y70->X4Y70
+		//Enlaces internos internos hacia la derecha
+		X4Y70->X10Y70[dir = both]
+		X10Y70->X11Y70[dir = both]
+		X11Y70->X23Y70[dir = both]
+		Y80->X3Y80
+		//Enlaces internos internos hacia la derecha
+		X3Y80->X9Y80[dir = both]
+		X9Y80->X19Y80[dir = both]
+		X19Y80->X20Y80[dir = both]
+		X20Y80->X21Y80[dir = both]
+		X21Y80->X22Y80[dir = both]
+		X22Y80->X23Y80[dir = both]
+		Y90->X3Y90
+		//Enlaces internos internos hacia la derecha
+		X3Y90->X8Y90[dir = both]
+		X8Y90->X13Y90[dir = both]
+		X13Y90->X14Y90[dir = both]
+		X14Y90->X15Y90[dir = both]
+		X15Y90->X16Y90[dir = both]
+		X16Y90->X17Y90[dir = both]
+		X17Y90->X18Y90[dir = both]
+		X18Y90->X19Y90[dir = both]
+		X19Y90->X20Y90[dir = both]
+		X20Y90->X21Y90[dir = both]
+		X21Y90->X22Y90[dir = both]
+		Y100->X2Y100
+		//Enlaces internos internos hacia la derecha
+		X2Y100->X3Y100[dir = both]
+		X3Y100->X7Y100[dir = both]
+		X7Y100->X10Y100[dir = both]
+		X10Y100->X11Y100[dir = both]
+		X11Y100->X12Y100[dir = both]
+		X12Y100->X20Y100[dir = both]
+		Y110->X1Y110
+		//Enlaces internos internos hacia la derecha
+		X1Y110->X6Y110[dir = both]
+		X6Y110->X9Y110[dir = both]
+		X9Y110->X13Y110[dir = both]
+		X13Y110->X18Y110[dir = both]
+		X18Y110->X20Y110[dir = both]
+		Y120->X0Y120
+		//Enlaces internos internos hacia la derecha
+		X0Y120->X6Y120[dir = both]
+		X6Y120->X7Y120[dir = both]
+		X7Y120->X8Y120[dir = both]
+		X8Y120->X13Y120[dir = both]
+		X13Y120->X17Y120[dir = both]
+		X17Y120->X18Y120[dir = both]
+		X18Y120->X19Y120[dir = both]
+		X19Y120->X20Y120[dir = both]
+		X20Y120->X21Y120[dir = both]
+		Y130->X0Y130
+		//Enlaces internos internos hacia la derecha
+		X0Y130->X3Y130[dir = both]
+		X3Y130->X4Y130[dir = both]
+		X4Y130->X5Y130[dir = both]
+		X5Y130->X8Y130[dir = both]
+		X8Y130->X13Y130[dir = both]
+		X13Y130->X16Y130[dir = both]
+		X16Y130->X22Y130[dir = both]
+		Y140->X1Y140
+		//Enlaces internos internos hacia la derecha
+		X1Y140->X2Y140[dir = both]
+		X2Y140->X6Y140[dir = both]
+		X6Y140->X9Y140[dir = both]
+		X9Y140->X23Y140[dir = both]
+		Y150->X1Y150
+		//Enlaces internos internos hacia la derecha
+		X1Y150->X4Y150[dir = both]
+		X4Y150->X6Y150[dir = both]
+		X6Y150->X9Y150[dir = both]
+		X9Y150->X23Y150[dir = both]
+		Y160->X1Y160
+		//Enlaces internos internos hacia la derecha
+		X1Y160->X4Y160[dir = both]
+		X4Y160->X7Y160[dir = both]
+		X7Y160->X8Y160[dir = both]
+		X8Y160->X9Y160[dir = both]
+		X9Y160->X12Y160[dir = both]
+		X12Y160->X13Y160[dir = both]
+		X13Y160->X14Y160[dir = both]
+		X14Y160->X15Y160[dir = both]
+		X15Y160->X16Y160[dir = both]
+		X16Y160->X22Y160[dir = both]
+		Y170->X1Y170
+		//Enlaces internos internos hacia la derecha
+		X1Y170->X5Y170[dir = both]
+		X5Y170->X12Y170[dir = both]
+		X12Y170->X17Y170[dir = both]
+		X17Y170->X21Y170[dir = both]
+		Y180->X2Y180
+		//Enlaces internos internos hacia la derecha
+		X2Y180->X12Y180[dir = both]
+		X12Y180->X18Y180[dir = both]
+		X18Y180->X19Y180[dir = both]
+		X19Y180->X20Y180[dir = both]
+		Y190->X3Y190
+		//Enlaces internos internos hacia la derecha
+		X3Y190->X4Y190[dir = both]
+		X4Y190->X5Y190[dir = both]
+		X5Y190->X6Y190[dir = both]
+		X6Y190->X13Y190[dir = both]
+		X13Y190->X19Y190[dir = both]
+		Y200->X7Y200
+		//Enlaces internos internos hacia la derecha
+		X7Y200->X8Y200[dir = both]
+		X8Y200->X9Y200[dir = both]
+		X9Y200->X10Y200[dir = both]
+		X10Y200->X14Y200[dir = both]
+		X14Y200->X15Y200[dir = both]
+		X15Y200->X16Y200[dir = both]
+		X16Y200->X17Y200[dir = both]
+		X17Y200->X18Y200[dir = both]
+		Y210->X7Y210
+		//Enlaces internos internos hacia la derecha
+		X7Y210->X8Y210[dir = both]
+		X8Y210->X10Y210[dir = both]
+		X10Y210->X11Y210[dir = both]
+		X11Y210->X12Y210[dir = both]
+		X12Y210->X13Y210[dir = both]
+		X13Y210->X15Y210[dir = both]
+		X15Y210->X16Y210[dir = both]
+		Y220->X6Y220
+		//Enlaces internos internos hacia la derecha
+		X6Y220->X9Y220[dir = both]
+		X9Y220->X11Y220[dir = both]
+		X11Y220->X14Y220[dir = both]
+		X14Y220->X16Y220[dir = both]
+		Y230->X5Y230
+		//Enlaces internos internos hacia la derecha
+		X5Y230->X10Y230[dir = both]
+		X10Y230->X12Y230[dir = both]
+		X12Y230->X15Y230[dir = both]
+		X15Y230->X17Y230[dir = both]
+		Y240->X5Y240
+		//Enlaces internos internos hacia la derecha
+		X5Y240->X10Y240[dir = both]
+		X10Y240->X13Y240[dir = both]
+		X13Y240->X16Y240[dir = both]
+		X16Y240->X18Y240[dir = both]
+		Y250->X4Y250
+		//Enlaces internos internos hacia la derecha
+		X4Y250->X5Y250[dir = both]
+		X5Y250->X6Y250[dir = both]
+		X6Y250->X7Y250[dir = both]
+		X7Y250->X10Y250[dir = both]
+		X10Y250->X13Y250[dir = both]
+		X13Y250->X14Y250[dir = both]
+		X14Y250->X15Y250[dir = both]
+		X15Y250->X19Y250[dir = both]
+		Y260->X4Y260
+		//Enlaces internos internos hacia la derecha
+		X4Y260->X8Y260[dir = both]
+		X8Y260->X9Y260[dir = both]
+		X9Y260->X12Y260[dir = both]
+		X12Y260->X15Y260[dir = both]
+		X15Y260->X20Y260[dir = both]
+		Y270->X3Y270
+		//Enlaces internos internos hacia la derecha
+		X3Y270->X9Y270[dir = both]
+		X9Y270->X12Y270[dir = both]
+		X12Y270->X15Y270[dir = both]
+		X15Y270->X20Y270[dir = both]
+		Y280->X2Y280
+		//Enlaces internos internos hacia la derecha
+		X2Y280->X10Y280[dir = both]
+		X10Y280->X13Y280[dir = both]
+		X13Y280->X14Y280[dir = both]
+		X14Y280->X19Y280[dir = both]
+		X19Y280->X21Y280[dir = both]
+		Y290->X2Y290
+		//Enlaces internos internos hacia la derecha
+		X2Y290->X4Y290[dir = both]
+		X4Y290->X6Y290[dir = both]
+		X6Y290->X10Y290[dir = both]
+		X10Y290->X19Y290[dir = both]
+		X19Y290->X21Y290[dir = both]
+		Y300->X2Y300
+		//Enlaces internos internos hacia la derecha
+		X2Y300->X4Y300[dir = both]
+		X4Y300->X6Y300[dir = both]
+		X6Y300->X8Y300[dir = both]
+		X8Y300->X9Y300[dir = both]
+		X9Y300->X10Y300[dir = both]
+		X10Y300->X19Y300[dir = both]
+		X19Y300->X20Y300[dir = both]
+		X20Y300->X21Y300[dir = both]
+		Y310->X2Y310
+		//Enlaces internos internos hacia la derecha
+		X2Y310->X9Y310[dir = both]
+		X9Y310->X19Y310[dir = both]
+		X19Y310->X21Y310[dir = both]
+		Y320->X3Y320
+		//Enlaces internos internos hacia la derecha
+		X3Y320->X9Y320[dir = both]
+		X9Y320->X18Y320[dir = both]
+		X18Y320->X20Y320[dir = both]
+		Y330->X4Y330
+		//Enlaces internos internos hacia la derecha
+		X4Y330->X5Y330[dir = both]
+		X5Y330->X6Y330[dir = both]
+		X6Y330->X7Y330[dir = both]
+		X7Y330->X8Y330[dir = both]
+		X8Y330->X9Y330[dir = both]
+		X9Y330->X10Y330[dir = both]
+		X10Y330->X11Y330[dir = both]
+		X11Y330->X17Y330[dir = both]
+		Y340->X5Y340
+		//Enlaces internos internos hacia la derecha
+		X5Y340->X12Y340[dir = both]
+		X12Y340->X13Y340[dir = both]
+		X13Y340->X14Y340[dir = both]
+		X14Y340->X15Y340[dir = both]
+		X15Y340->X16Y340[dir = both]
+		X16Y340->X17Y340[dir = both]
+		X17Y340->X18Y340[dir = both]
+		Y350->X5Y350
+		//Enlaces internos internos hacia la derecha
+		X5Y350->X6Y350[dir = both]
+		X6Y350->X7Y350[dir = both]
+		X7Y350->X8Y350[dir = both]
+		X8Y350->X9Y350[dir = both]
+		X9Y350->X12Y350[dir = both]
+		X12Y350->X13Y350[dir = both]
+		X13Y350->X19Y350[dir = both]
+		Y360->X4Y360
+		//Enlaces internos internos hacia la derecha
+		X4Y360->X14Y360[dir = both]
+		X14Y360->X19Y360[dir = both]
+		Y370->X4Y370
+		//Enlaces internos internos hacia la derecha
+		X4Y370->X14Y370[dir = both]
+		X14Y370->X19Y370[dir = both]
+		Y380->X4Y380
+		//Enlaces internos internos hacia la derecha
+		X4Y380->X14Y380[dir = both]
+		X14Y380->X19Y380[dir = both]
+		Y390->X4Y390
+		//Enlaces internos internos hacia la derecha
+		X4Y390->X14Y390[dir = both]
+		X14Y390->X18Y390[dir = both]
+		Y400->X4Y400
+		//Enlaces internos internos hacia la derecha
+		X4Y400->X5Y400[dir = both]
+		X5Y400->X13Y400[dir = both]
+		X13Y400->X14Y400[dir = both]
+		X14Y400->X15Y400[dir = both]
+		X15Y400->X16Y400[dir = both]
+		X16Y400->X17Y400[dir = both]
+		Y410->X5Y410
+		//Enlaces internos internos hacia la derecha
+		X5Y410->X6Y410[dir = both]
+		X6Y410->X7Y410[dir = both]
+		X7Y410->X8Y410[dir = both]
+		X8Y410->X9Y410[dir = both]
+		X9Y410->X10Y410[dir = both]
+		X10Y410->X11Y410[dir = both]
+		X11Y410->X12Y410[dir = both]
+		//rank same de laterales y sus nodos internos
+		{ rank = same Y00 X11Y00 X11Y00 X12Y00 X12Y00 X13Y00 X13Y00 X14Y00 X14Y00 X15Y00 X15Y00 X16Y00 }
+		{ rank = same Y10 X9Y10 X9Y10 X10Y10 X10Y10 X17Y10 }
+		{ rank = same Y20 X8Y20 X8Y20 X14Y20 X14Y20 X15Y20 X15Y20 X16Y20 X16Y20 X18Y20 }
+		{ rank = same Y30 X7Y30 X7Y30 X13Y30 X13Y30 X17Y30 X17Y30 X19Y30 }
+		{ rank = same Y40 X6Y40 X6Y40 X12Y40 X12Y40 X17Y40 X17Y40 X19Y40 }
+		{ rank = same Y50 X5Y50 X5Y50 X12Y50 X12Y50 X18Y50 X18Y50 X19Y50 X19Y50 X20Y50 }
+		{ rank = same Y60 X5Y60 X5Y60 X12Y60 X12Y60 X13Y60 X13Y60 X14Y60 X14Y60 X15Y60 X15Y60 X16Y60 X16Y60 X17Y60 X17Y60 X21Y60 X21Y60 X22Y60 }
+		{ rank = same Y70 X4Y70 X4Y70 X10Y70 X10Y70 X11Y70 X11Y70 X23Y70 }
+		{ rank = same Y80 X3Y80 X3Y80 X9Y80 X9Y80 X19Y80 X19Y80 X20Y80 X20Y80 X21Y80 X21Y80 X22Y80 X22Y80 X23Y80 }
+		{ rank = same Y90 X3Y90 X3Y90 X8Y90 X8Y90 X13Y90 X13Y90 X14Y90 X14Y90 X15Y90 X15Y90 X16Y90 X16Y90 X17Y90 X17Y90 X18Y90 X18Y90 X19Y90 X19Y90 X20Y90 X20Y90 X21Y90 X21Y90 X22Y90 }
+		{ rank = same Y100 X2Y100 X2Y100 X3Y100 X3Y100 X7Y100 X7Y100 X10Y100 X10Y100 X11Y100 X11Y100 X12Y100 X12Y100 X20Y100 }
+		{ rank = same Y110 X1Y110 X1Y110 X6Y110 X6Y110 X9Y110 X9Y110 X13Y110 X13Y110 X18Y110 X18Y110 X20Y110 }
+		{ rank = same Y120 X0Y120 X0Y120 X6Y120 X6Y120 X7Y120 X7Y120 X8Y120 X8Y120 X13Y120 X13Y120 X17Y120 X17Y120 X18Y120 X18Y120 X19Y120 X19Y120 X20Y120 X20Y120 X21Y120 }
+		{ rank = same Y130 X0Y130 X0Y130 X3Y130 X3Y130 X4Y130 X4Y130 X5Y130 X5Y130 X8Y130 X8Y130 X13Y130 X13Y130 X16Y130 X16Y130 X22Y130 }
+		{ rank = same Y140 X1Y140 X1Y140 X2Y140 X2Y140 X6Y140 X6Y140 X9Y140 X9Y140 X23Y140 }
+		{ rank = same Y150 X1Y150 X1Y150 X4Y150 X4Y150 X6Y150 X6Y150 X9Y150 X9Y150 X23Y150 }
+		{ rank = same Y160 X1Y160 X1Y160 X4Y160 X4Y160 X7Y160 X7Y160 X8Y160 X8Y160 X9Y160 X9Y160 X12Y160 X12Y160 X13Y160 X13Y160 X14Y160 X14Y160 X15Y160 X15Y160 X16Y160 X16Y160 X22Y160 }
+		{ rank = same Y170 X1Y170 X1Y170 X5Y170 X5Y170 X12Y170 X12Y170 X17Y170 X17Y170 X21Y170 }
+		{ rank = same Y180 X2Y180 X2Y180 X12Y180 X12Y180 X18Y180 X18Y180 X19Y180 X19Y180 X20Y180 }
+		{ rank = same Y190 X3Y190 X3Y190 X4Y190 X4Y190 X5Y190 X5Y190 X6Y190 X6Y190 X13Y190 X13Y190 X19Y190 }
+		{ rank = same Y200 X7Y200 X7Y200 X8Y200 X8Y200 X9Y200 X9Y200 X10Y200 X10Y200 X14Y200 X14Y200 X15Y200 X15Y200 X16Y200 X16Y200 X17Y200 X17Y200 X18Y200 }
+		{ rank = same Y210 X7Y210 X7Y210 X8Y210 X8Y210 X10Y210 X10Y210 X11Y210 X11Y210 X12Y210 X12Y210 X13Y210 X13Y210 X15Y210 X15Y210 X16Y210 }
+		{ rank = same Y220 X6Y220 X6Y220 X9Y220 X9Y220 X11Y220 X11Y220 X14Y220 X14Y220 X16Y220 }
+		{ rank = same Y230 X5Y230 X5Y230 X10Y230 X10Y230 X12Y230 X12Y230 X15Y230 X15Y230 X17Y230 }
+		{ rank = same Y240 X5Y240 X5Y240 X10Y240 X10Y240 X13Y240 X13Y240 X16Y240 X16Y240 X18Y240 }
+		{ rank = same Y250 X4Y250 X4Y250 X5Y250 X5Y250 X6Y250 X6Y250 X7Y250 X7Y250 X10Y250 X10Y250 X13Y250 X13Y250 X14Y250 X14Y250 X15Y250 X15Y250 X19Y250 }
+		{ rank = same Y260 X4Y260 X4Y260 X8Y260 X8Y260 X9Y260 X9Y260 X12Y260 X12Y260 X15Y260 X15Y260 X20Y260 }
+		{ rank = same Y270 X3Y270 X3Y270 X9Y270 X9Y270 X12Y270 X12Y270 X15Y270 X15Y270 X20Y270 }
+		{ rank = same Y280 X2Y280 X2Y280 X10Y280 X10Y280 X13Y280 X13Y280 X14Y280 X14Y280 X19Y280 X19Y280 X21Y280 }
+		{ rank = same Y290 X2Y290 X2Y290 X4Y290 X4Y290 X6Y290 X6Y290 X10Y290 X10Y290 X19Y290 X19Y290 X21Y290 }
+		{ rank = same Y300 X2Y300 X2Y300 X4Y300 X4Y300 X6Y300 X6Y300 X8Y300 X8Y300 X9Y300 X9Y300 X10Y300 X10Y300 X19Y300 X19Y300 X20Y300 X20Y300 X21Y300 }
+		{ rank = same Y310 X2Y310 X2Y310 X9Y310 X9Y310 X19Y310 X19Y310 X21Y310 }
+		{ rank = same Y320 X3Y320 X3Y320 X9Y320 X9Y320 X18Y320 X18Y320 X20Y320 }
+		{ rank = same Y330 X4Y330 X4Y330 X5Y330 X5Y330 X6Y330 X6Y330 X7Y330 X7Y330 X8Y330 X8Y330 X9Y330 X9Y330 X10Y330 X10Y330 X11Y330 X11Y330 X17Y330 }
+		{ rank = same Y340 X5Y340 X5Y340 X12Y340 X12Y340 X13Y340 X13Y340 X14Y340 X14Y340 X15Y340 X15Y340 X16Y340 X16Y340 X17Y340 X17Y340 X18Y340 }
+		{ rank = same Y350 X5Y350 X5Y350 X6Y350 X6Y350 X7Y350 X7Y350 X8Y350 X8Y350 X9Y350 X9Y350 X12Y350 X12Y350 X13Y350 X13Y350 X19Y350 }
+		{ rank = same Y360 X4Y360 X4Y360 X14Y360 X14Y360 X19Y360 }
+		{ rank = same Y370 X4Y370 X4Y370 X14Y370 X14Y370 X19Y370 }
+		{ rank = same Y380 X4Y380 X4Y380 X14Y380 X14Y380 X19Y380 }
+		{ rank = same Y390 X4Y390 X4Y390 X14Y390 X14Y390 X18Y390 }
+		{ rank = same Y400 X4Y400 X4Y400 X5Y400 X5Y400 X13Y400 X13Y400 X14Y400 X14Y400 X15Y400 X15Y400 X16Y400 X16Y400 X17Y400 }
+		{ rank = same Y410 X5Y410 X5Y410 X6Y410 X6Y410 X7Y410 X7Y410 X8Y410 X8Y410 X9Y410 X9Y410 X10Y410 X10Y410 X11Y410 X11Y410 X12Y410 }
+
+}

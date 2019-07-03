@@ -1,0 +1,40 @@
+digraph avl
+{
+	graph[color = "lightcyan", fontcolor = "steelblue4", fontname = serif, style = filled, label = "Usuarios"];
+	node[shape = egg, style = filled, color = navyblue, fontcolor = white, peripheries = 2];
+	edge[color = deeppink];
+
+		andres[label = <<FONT POINT-SIZE = "11"> ID: andres </FONT>>]
+		andres
+		ivan[label = <<FONT POINT-SIZE = "11"> ID: ivan </FONT>>]
+
+		subgraph cluster_lista_simple_usuario_ivan
+		{
+			graph[color = "white:gray", fontcolor = "black", style = filled, fontsize = 7, label = "Imagenes del usuario ivan"];
+			node[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];
+			edge[color = "purple:grey"];
+
+			_usuario_ivan2[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID imagen: 2 </FONT>>]
+
+		}
+ivan->_usuario_ivan2		andres[label = <<FONT POINT-SIZE = "11"> ID: andres </FONT>>]
+		ivan->andres
+		ivan[label = <<FONT POINT-SIZE = "11"> ID: ivan </FONT>>]
+
+		subgraph cluster_lista_simple_usuario_ivan
+		{
+			graph[color = "white:gray", fontcolor = "black", style = filled, fontsize = 7, label = "Imagenes del usuario ivan"];
+			node[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];
+			edge[color = "purple:grey"];
+
+			_usuario_ivan2[fillcolor = black, fontcolor = white, label = <<FONT POINT-SIZE = "9"> ID imagen: 2 </FONT>>]
+
+		}
+		ivan->_usuario_ivan2
+		rayan[label = <<FONT POINT-SIZE = "11"> ID: rayan </FONT>>]
+		ivan->rayan
+
+		rayan[label = <<FONT POINT-SIZE = "11"> ID: rayan </FONT>>]
+		rayan
+
+}
